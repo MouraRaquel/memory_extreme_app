@@ -42,7 +42,7 @@ class DrawerList extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
-              title: Text("Sair"),
+              title: Text("Logout"),
               trailing: Icon(Icons.arrow_forward),
               onTap: () => onClickLogout(context),
             )
@@ -52,10 +52,10 @@ class DrawerList extends StatelessWidget {
   }
 }
   onClickLogout(BuildContext context) {
-    Navigator.pop(context);
-    push(context, Figuras(), replace: true);
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Login();
+    }));
   }
 
-void push(BuildContext context, Figuras figuras, {bool replace}) {
-}
+
 
