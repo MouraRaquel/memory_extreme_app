@@ -60,7 +60,7 @@ class Login extends StatelessWidget {
       obscureText: password,
       validator: validator,
       keyboardType: keyboardType,
-      style: TextStyle(fontSize: 25, color: Colors.purple),
+      style: TextStyle(fontSize: 25, color: Colors.blue),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(fontSize: 25, color: Colors.purple),
