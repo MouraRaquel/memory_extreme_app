@@ -44,6 +44,30 @@ class Palavras extends StatelessWidget {
               _button(context, "Jamelão", _onClickJamelao)
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _button(context, "Maracujá", _onClickMaracuja),
+              _button(context, "Mamão", _onClickMamao),
+              _button(context, "Melância", _onClickMelancia)
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _button(context, "Maracujá", _onClickMaracuja),
+              _button(context, "Mamão", _onClickMamao),
+              _button(context, "Melância", _onClickMelancia)
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _button(context, "Maracujá", _onClickMaracuja),
+              _button(context, "Mamão", _onClickMamao),
+              _button(context, "Melância", _onClickMelancia)
+            ],
+          ),
         ],
       ),
     );

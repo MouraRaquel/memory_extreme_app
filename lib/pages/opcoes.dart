@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memory_extreme_app/pages/jogo_das_figuras.dart';
+import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 import 'package:memory_extreme_app/pages/categorias_de_palavras.dart';
 
