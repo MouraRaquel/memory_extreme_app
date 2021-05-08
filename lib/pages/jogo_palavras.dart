@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'categorias_de_palavras.dart';
+
 class Palavras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,93 +10,57 @@ class Palavras extends StatelessWidget {
         title: Text("Palavras"),
       ),
       body: _body(context),
-
     );
   }
 
   _body(context) {
     Size size = MediaQuery.of(context).size;
+
     return Container(
-      height: size.height,
+      padding: EdgeInsets.only(top: 40),
+      width: size.width,
       color: Colors.black,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Maracujá", _onClickMaracuja),
-              _button(context, "Mamão", _onClickMamao),
-              _button(context, "Melância", _onClickMelancia)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Morango", _onClickMorango),
-              _button(context, "Manga", _onClickManga),
-              _button(context, "Amora", _onClixckAmora)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Carambola", _onClickCarambola),
-              _button(context, "Maçã", _onClickMaca),
-              _button(context, "Jamelão", _onClickJamelao)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Maracujá", _onClickMaracuja),
-              _button(context, "Mamão", _onClickMamao),
-              _button(context, "Melância", _onClickMelancia)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Maracujá", _onClickMaracuja),
-              _button(context, "Mamão", _onClickMamao),
-              _button(context, "Melância", _onClickMelancia)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _button(context, "Maracujá", _onClickMaracuja),
-              _button(context, "Mamão", _onClickMamao),
-              _button(context, "Melância", _onClickMelancia)
-            ],
-          ),
+        Expanded(flex: 5, child: Text("Memorize essa palavra: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
+              ))),
+          Expanded(flex: 6, child: Text(Categoria().frutas[0], style: TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.bold)), ),
+          Expanded(flex: 0, child: _button(context, "Avançar")),
+        Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
   }
 
+  _button(context, String text) {
+    return RaisedButton(
+        color: Colors.purple,
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: () {
+          _onClickAvancar(context);
+        }
+    );
+  }
+
+  _onClickAvancar(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Categoria();
+    }));
+  }
+  /*
   _button(context, String text, Function onPressed) {
     return RaisedButton(
         color: Colors.purple,
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: onPressed);
-  }
-
-  _onClickMaracuja() {}
-
-  _onClickMamao() {}
-
-  _onClickMelancia() {}
-
-  _onClickMorango() {}
-
-  _onClickManga() {}
-
-  _onClixckAmora() {}
-
-  _onClickCarambola() {}
-
-  _onClickMaca() {}
-
-  _onClickJamelao() {}
+  }*/
 }

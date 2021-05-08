@@ -34,7 +34,7 @@ class opcoes extends StatelessWidget {
                   fontWeight: FontWeight.bold,
 
               ))),
-          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Sorteio()))),
+          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
           Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, Figuras()))),
           Expanded(flex: 3, child: Text(
               " ",
