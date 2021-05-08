@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/pages/jogo_das_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
+import 'package:memory_extreme_app/pages/categorias_de_palavras.dart';
 
 class opcoes extends StatelessWidget {
   @override
@@ -33,7 +34,7 @@ class opcoes extends StatelessWidget {
                   fontWeight: FontWeight.bold,
 
               ))),
-          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
+          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Sorteio()))),
           Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, Figuras()))),
           Expanded(flex: 3, child: Text(
               " ",

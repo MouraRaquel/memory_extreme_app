@@ -96,14 +96,13 @@ class Sorteio extends StatelessWidget {
     ];
 
     var categorias = [frutas, veiculos, profissao];
-
-    var categoria = getRadomElement(categorias);
-    print(categoria);
+    final _random = new Random();
+    var categoriaSelecionada = categorias[_random.nextInt(categorias.length)];
+    print(categoriaSelecionada);
+    var categoriaEmbaralhada = (categoriaSelecionada.toList()..shuffle());
+    print(categoriaEmbaralhada);
+    var palavrasSelecionadasIniciante = [...categoriaEmbaralhada].take(9).toList();
+    print(palavrasSelecionadasIniciante);
   }
 
-  getRadomElement(List<List<String>> categorias) {
-    final random = new Random();
-    var i = random.nextInt(categorias.length);
-    return categorias[i];
-  }
 }
