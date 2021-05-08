@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-class Categorias extends StatelessWidget {
+class Sorteio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,5 +94,16 @@ class Categorias extends StatelessWidget {
       'Charrete',
       'Reboque'
     ];
+
+    var categorias = [frutas, veiculos, profissao];
+
+    var categoria = getRadomElement(categorias);
+    print(categoria);
+  }
+
+  getRadomElement(List<List<String>> categorias) {
+    final random = new Random();
+    var i = random.nextInt(categorias.length);
+    return categorias[i];
   }
 }
