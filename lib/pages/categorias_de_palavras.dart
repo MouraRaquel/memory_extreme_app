@@ -1,11 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-
-
 class Categoria extends StatelessWidget {
-
   List<String> _frutas = [
     'Maçã',
     'Mamão',
@@ -57,7 +53,7 @@ class Categoria extends StatelessWidget {
     'Dentista',
     'Contador',
     'Fotógrafo',
-    'Pedreito',
+    'Pedreiro',
     'Padeiro',
     'Marceneiro'
   ];
@@ -90,35 +86,77 @@ class Categoria extends StatelessWidget {
     'Reboque'
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _body(context),
-
     );
   }
 
   _body(context) {
-
     List<String> frutasEmbaralhadas = frutas..shuffle();
     print(frutasEmbaralhadas);
     var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
     var categoriaSelecionada = categorias[_random.nextInt(categorias.length)];
     var categoriaEmbaralhada = (categoriaSelecionada.toList()..shuffle());
-    var _palavrasSelecionadasNivelUm = [...categoriaEmbaralhada].take(9).toList();
-    var palavrasSelecionadasNivelDois = [...categoriaEmbaralhada].take(12).toList();
-    var palavrasSelecionadasNivelTres = [...categoriaEmbaralhada].take(15).toList();
-    var palavrasSelecionadasNivelQuatro = [...categoriaEmbaralhada].take(18).toList();
-    var palavrasSelecionadasNivelCinco = [...categoriaEmbaralhada].take(21).toList();
-    var palavrasSelecionadasNivelSeis = [...categoriaEmbaralhada].take(24).toList();
+    var palavrasSelecionadasNivelUm =
+        [...categoriaEmbaralhada].take(9).toList();
+    var palavrasSelecionadasNivelDois =
+        [...categoriaEmbaralhada].take(12).toList();
+    var palavrasSelecionadasNivelTres =
+        [...categoriaEmbaralhada].take(15).toList();
+    var palavrasSelecionadasNivelQuatro =
+        [...categoriaEmbaralhada].take(18).toList();
+    var palavrasSelecionadasNivelCinco =
+        [...categoriaEmbaralhada].take(21).toList();
+    var palavrasSelecionadasNivelSeis =
+        [...categoriaEmbaralhada].take(24).toList();
 
-    return Text("Oi",
-        style: TextStyle(
-          fontSize: 40,
-          color: Colors.red,
-          fontWeight: FontWeight.bold,));
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      padding: EdgeInsets.all(2),
+      width: size.width,
+      color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[0]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[1]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[2]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[3]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[4]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[5]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[6]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[7]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[8]}", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple))),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   List<String> get frutas => _frutas;
