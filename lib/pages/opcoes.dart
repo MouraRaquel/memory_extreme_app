@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 import 'package:memory_extreme_app/pages/categorias_de_palavras.dart';
@@ -35,7 +36,7 @@ class opcoes extends StatelessWidget {
 
               ))),
           Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
-          Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, Figuras()))),
+          Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, palavras(context)))),
           Expanded(flex: 3, child: Text(
               " ",
               style: TextStyle(fontSize: 200,
@@ -58,6 +59,11 @@ class opcoes extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return home_page;
     }));
+  }
+
+  Widget palavras(context) {
+    return Instrucoes();
+
   }
 
 }
