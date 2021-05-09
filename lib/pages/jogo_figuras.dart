@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Figuras extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,42 +13,46 @@ class Figuras extends StatelessWidget {
   }
   _body(context) {
 
-    List<Image> _imagens = [
-      _img("assets/imagens/bicicleta.png"),
-      _img("assets/imagens/bola.png"),
-      _img("assets/imagens/boneca.png"),
-      _img("assets/imagens/cachorro.png"),
-      _img("assets/imagens/carro.png"),
-      _img("assets/imagens/casaco.png"),
-      _img("assets/imagens/hamburguer.png"),
-      _img("assets/imagens/livro.png"),
-      _img("assets/imagens/moto.png"),
-      _img("assets/imagens/peteca.png"),
-      _img("assets/imagens/radio.png"),
-      _img("assets/imagens/relógio.png"),
-      _img("assets/imagens/telefone.png"),
-      _img("assets/imagens/televisao.png"),
-      _img("assets/imagens/urso.png"),
+    List<String> imagens = [
+      "assets/imagens/bicicleta.png",
+      "assets/imagens/bola.png",
+      "assets/imagens/boneca.png",
+      "assets/imagens/cachorro.png",
+      "assets/imagens/carro.png",
+      "assets/imagens/casaco.png",
+      "assets/imagens/hamburguer.png",
+      "assets/imagens/livro.png",
+      "assets/imagens/moto.png",
+      "assets/imagens/peteca.png",
+      "assets/imagens/radio.png",
+      "assets/imagens/relogio.png",
+      "assets/imagens/telefone.png",
+      "assets/imagens/televisao.png",
+      "assets/imagens/urso.png",
     ];
 
-    List<Image> imagensEmbaralhadas = _imagens..shuffle();
-
+    List<String> imagensEmbaralhadas = imagens..shuffle();
+    print(imagensEmbaralhadas[4]);
+    List<String> imagensSelecionadasNivelUm = [...imagensEmbaralhadas].take(9).toList();
+    print(imagensSelecionadasNivelUm);
     Size size = MediaQuery.of(context).size;
     return Container(
+      padding: EdgeInsets.only(top: 10),
       width: size.width,
       color: Colors.white,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 5, child: Text("Memorize essas figuras: ",
+          Expanded(flex: 1, child: Text("Memorize essas figuras: ",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.purple,
                 fontWeight: FontWeight.bold,
               ))),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(flex: 1, child: Image.asset('${imagensSelecionadasNivelUm[0]}')),
+          Expanded(flex: 1, child: Image.asset('${imagensSelecionadasNivelUm[1]}')),
+          Expanded(flex: 0, child: _button(context, "Avançar")),
           Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
@@ -61,5 +66,23 @@ class Figuras extends StatelessWidget {
       height: 100,
     );
   }
+
+  _button(context, String text) {
+    return RaisedButton(
+        color: Colors.purple,
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: () {
+          _onClickAvancar(context);
+        }
+    );
+  }
+
+  _onClickAvancar(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Figuras();
+    }));
+  }
+
+
 }
 
