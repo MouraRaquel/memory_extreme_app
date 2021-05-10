@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
 class InstrucoesPalavras extends StatelessWidget {
@@ -23,7 +24,7 @@ class InstrucoesPalavras extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 5, child: Text("O jogo das palavras funciona assim: Memorize a palavra a seguir, "
+          Expanded(flex: 5, child: Text("O jogo das palavras funciona assim: Memorize a palavra que será apresentada, "
               "em seguida outras palavras serão apresentadas, "
               "mas você precisa selecionar a palavra vista anteriormente!",
               textAlign: TextAlign.center,
@@ -106,7 +107,7 @@ class InstrucoesFiguras extends StatelessWidget {
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Palavras();
+      return Figuras();
     }));
   }
 
