@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:memory_extreme_app/home_page.dart';
+import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
+import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 import 'package:memory_extreme_app/pages/login.dart';
 
 class DrawerList extends StatelessWidget {
@@ -21,24 +24,48 @@ class DrawerList extends StatelessWidget {
               title: Text("Página Inicial"),
               subtitle: Text("Mais informações"),
               trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.text_fields),
               title: Text("Jogo das Palavras"),
               subtitle: Text("Mais informações"),
               trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Palavras()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.terrain),
               title: Text("Jogo das Figuras"),
               subtitle: Text("Mais informações"),
               trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Figuras()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.receipt),
               title: Text("Instruções"),
               subtitle: Text("Mais informações"),
               trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InstrucoesPalavras()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
