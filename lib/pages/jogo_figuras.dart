@@ -41,17 +41,8 @@ class _FigurasState extends State<Figuras> {
   }
   _body(context) {
 
-    List<String> obterSelecionadas() {
-      List<String> imagensEmbaralhadas = imagens..shuffle();
-      List<String> imagensSelecionadas = imagensEmbaralhadas.take(9).toList();
-      return imagensSelecionadas;
-    }
-
-    List<String> sorteadas = [];
-    sorteadas = obterSelecionadas();
-    print("Sorteadas: $sorteadas");
-    List<String> embaralhadas = sorteadas..shuffle();
-    print("Embaralhadas: $embaralhadas");
+    imagens..shuffle();
+    List<String> memorizar = imagens.take(9).toList();
 
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -68,8 +59,8 @@ class _FigurasState extends State<Figuras> {
                 color: Colors.purple,
                 fontWeight: FontWeight.bold,
               ))),
-          Expanded(flex: 1, child: _img(embaralhadas[0])),
-          Expanded(flex: 1, child: _img(embaralhadas[1])),
+          Expanded(flex: 1, child: _img(memorizar[0])),
+          Expanded(flex: 1, child: _img(memorizar[1])),
           Expanded(flex: 0, child: _button(context, "Avançar")),
           Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
@@ -101,7 +92,7 @@ class _FigurasState extends State<Figuras> {
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Imagens(imagens, imagens),
+          builder: (context) => Imagens(imagens),
         ));
   }
 }
