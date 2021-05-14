@@ -41,13 +41,12 @@ class HomePage extends StatelessWidget {
   }
 
   _button(context, String text) {
-    return RaisedButton(
-      color: Colors.purple,
-      child: Text(text, style: TextStyle(color: Colors.white)),
-      onPressed: () {
-        _onClickAvancar(context);
-      }
-    );
+    return TextButton(
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: () {
+          _onClickAvancar(context);
+        });
   }
 
   _onClickAvancar(context) {
@@ -125,16 +124,18 @@ class Jogos extends StatelessWidget {
   }
 
   _button(context, String text, Function onPressed) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: onPressed
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget home_page) {
+  void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return home_page;
+      return homePage;
     }));
   }
 }

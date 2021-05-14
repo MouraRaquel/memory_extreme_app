@@ -43,8 +43,10 @@ class Palavras extends StatelessWidget {
   }
 
   _button(context, String text) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
           _onClickAvancar(context);
@@ -109,16 +111,18 @@ class OpcoesPalavras extends StatelessWidget {
   }
 
   _button(context, String text, Function onPressed) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: onPressed
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget home_page) {
+  void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return home_page;
+      return homePage;
     }));
   }
 
@@ -164,18 +168,12 @@ class Categoria extends StatelessWidget {
     final _random = new Random();
     var categoriaSelecionada = categorias[_random.nextInt(categorias.length)];
     var categoriaEmbaralhada = (categoriaSelecionada.toList()..shuffle());
-    var palavrasSelecionadasNivelUm =
-    [...categoriaEmbaralhada].take(9).toList();
-    var palavrasSelecionadasNivelDois =
-    [...categoriaEmbaralhada].take(12).toList();
-    var palavrasSelecionadasNivelTres =
-    [...categoriaEmbaralhada].take(15).toList();
-    var palavrasSelecionadasNivelQuatro =
-    [...categoriaEmbaralhada].take(18).toList();
-    var palavrasSelecionadasNivelCinco =
-    [...categoriaEmbaralhada].take(21).toList();
-    var palavrasSelecionadasNivelSeis =
-    [...categoriaEmbaralhada].take(24).toList();
+    var palavrasSelecionadasNivelUm = [...categoriaEmbaralhada].take(9).toList();
+    //var palavrasSelecionadasNivelDois = [...categoriaEmbaralhada].take(12).toList();
+    // var palavrasSelecionadasNivelTres = [...categoriaEmbaralhada].take(15).toList();
+    // var palavrasSelecionadasNivelQuatro = [...categoriaEmbaralhada].take(18).toList();
+    // var palavrasSelecionadasNivelCinco = [...categoriaEmbaralhada].take(21).toList();
+    // var palavrasSelecionadasNivelSeis = [...categoriaEmbaralhada].take(24).toList();
 
     Size size = MediaQuery.of(context).size;
     return Container(

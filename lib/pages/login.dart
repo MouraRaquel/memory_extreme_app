@@ -37,7 +37,7 @@ class Login extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            _button(context, "Login", _onClickLogin),
+            _button(context, "Entrar", _onClickLogin),
             SizedBox(
               height: 20,
             ),
@@ -73,15 +73,11 @@ class Login extends StatelessWidget {
   _button(context, String text, Function onPressed) {
     return Container(
       height: 46,
-      child: RaisedButton(
-          color: Colors.purple,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-            ),
+      child: TextButton(
+          style: TextButton.styleFrom(
+              backgroundColor: Colors.purple
           ),
+          child: Text(text, style: TextStyle(color: Colors.white, fontSize: 22)),
           onPressed: () {
             _onClickLogin(context);
           }

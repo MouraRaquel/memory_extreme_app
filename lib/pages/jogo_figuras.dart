@@ -86,8 +86,10 @@ class _FigurasState extends State<Figuras> {
   }
 
   _button(context, String text) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
           setState(() {
@@ -152,10 +154,13 @@ class OpcoesFiguras extends StatelessWidget {
   }
 
   _button(context, String text, Function onPressed) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
         child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed);
+        onPressed: onPressed
+    );
   }
 
   void _onClickNavigator(BuildContext context, Widget home_page) {

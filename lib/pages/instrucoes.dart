@@ -3,7 +3,6 @@ import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
 class InstrucoesPalavras extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,30 +23,35 @@ class InstrucoesPalavras extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 5, child: Text("O jogo das palavras funciona assim: Memorize a palavra que será apresentada, "
-              "em seguida outras palavras serão apresentadas, "
-              "mas você precisa selecionar a palavra vista anteriormente!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 35,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ))),
-          Expanded(flex: 0, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(
+              flex: 5,
+              child: Text(
+                  "O jogo das palavras funciona assim: Memorize a palavra que será apresentada, "
+                  "em seguida outras palavras serão apresentadas, "
+                  "mas você precisa selecionar a palavra vista anteriormente!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          Expanded(
+              flex: 0, child: Text(" ", style: TextStyle(color: Colors.white))),
           Expanded(flex: 0, child: _button(context, "Avançar")),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(
+              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
   }
+
   _button(context, String text) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
           _onClickAvancar(context);
-        }
-    );
+        });
   }
 
   _onClickAvancar(context) {
@@ -55,11 +59,9 @@ class InstrucoesPalavras extends StatelessWidget {
       return Palavras();
     }));
   }
-
 }
 
 class InstrucoesFiguras extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,29 +82,34 @@ class InstrucoesFiguras extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 5, child: Text("O jogo das figuras funciona assim: "
-              "Memorize as figuras e a seguir tente reconhecê-las.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 35,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ))),
-          Expanded(flex: 0, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(
+              flex: 5,
+              child: Text(
+                  "O jogo das figuras funciona assim: "
+                  "Memorize as figuras e a seguir tente reconhecê-las.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          Expanded(
+              flex: 0, child: Text(" ", style: TextStyle(color: Colors.white))),
           Expanded(flex: 0, child: _button(context, "Avançar")),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(
+              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
   }
+
   _button(context, String text) {
-    return RaisedButton(
-        color: Colors.purple,
+    return TextButton(
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
           _onClickAvancar(context);
-        }
-    );
+        });
   }
 
   _onClickAvancar(context) {
@@ -110,5 +117,4 @@ class InstrucoesFiguras extends StatelessWidget {
       return Figuras();
     }));
   }
-
 }
