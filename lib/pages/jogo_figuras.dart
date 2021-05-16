@@ -154,9 +154,9 @@ class OpcoesFiguras extends StatelessWidget {
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget home_page) {
+  void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return home_page;
+      return homePage;
     }));
   }
 
