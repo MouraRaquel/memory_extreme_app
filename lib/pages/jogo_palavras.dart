@@ -141,6 +141,8 @@ class OpcoesPalavras extends StatelessWidget {
 class Categoria extends StatelessWidget {
 
   List<String> clicadas = [];
+  List<String> palavrasSelecionadas = [];
+
 
   List<String> _frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
     'Goiaba', 'Banana', 'Laranja', 'Limão', 'Abacate', 'Pêssego', 'Melância',
@@ -148,7 +150,7 @@ class Categoria extends StatelessWidget {
     'Tangerina', 'Ameixa', 'Carambola', 'Amora', 'Romã', 'Pitaya'
   ];
 
-  List<String> _profissao = ['Advogado', 'Bombeiro', 'Mecânico', 'Cabeleireiro',
+  List<String> _profissao = ['Advogado', 'Bombeiro', 'Mecânico', 'Porteiro',
     'Vendedor', 'Professor', 'Empresário', 'Policial', 'Juiz', 'Motorista',
     'Enfermeiro', 'Médico', 'Veterinário', 'Psicólogo', 'Segurança',
     'Faxineira', 'Engenheiro', 'Arquiteto', 'Farmacêutico', 'Dentista',
@@ -156,8 +158,8 @@ class Categoria extends StatelessWidget {
   ];
 
   List<String> _veiculos = ['Carro', 'Avião', 'Moto', 'Bicicleta', 'Trator',
-    'Foguete', 'Caminhão', 'Navio', 'Barco', 'Lancha', 'Caminhonete',
-    'Monomotor', 'Triciclo', 'Retroescavadeira', 'Jetsky', 'Caiaque',
+    'Foguete', 'Caminhão', 'Navio', 'Barco', 'Lancha', 'Jatinho',
+    'Monomotor', 'Triciclo', 'Van', 'Jetsky', 'Caiaque',
     'Helicóptero', 'ônibus', 'Trem',  'Metrô', 'Bondinho', 'Teleférico',
     'Carroça', 'Charrete', 'Reboque'
   ];
@@ -170,13 +172,14 @@ class Categoria extends StatelessWidget {
   }
 
   _body(context) {
-    List<String> frutasEmbaralhadas = frutas..shuffle();
-    print(frutasEmbaralhadas);
+    var _fontes = TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
+        color: Colors.white);
     var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
-    var categoriaSelecionada = categorias[_random.nextInt(categorias.length)];
-    var categoriaEmbaralhada = (categoriaSelecionada.toList()..shuffle());
-    var palavrasSelecionadas = categoriaEmbaralhada.take(9).toList();
+    var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]..shuffle();
+    //var  = categoriaSelecionada..shuffle();
+    print("Selecionadas: $palavrasSelecionadas");
+
 
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -190,19 +193,19 @@ class Categoria extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[0]}");
+                    print(clicadas);
                     _verificarPalavras(context);
                     enabled:
                     true;
                   },
                   child: Text("${palavrasSelecionadas[0]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
                   ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[1]}");
                     _verificarPalavras(context);
@@ -211,10 +214,9 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[1]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[2]}");
                     _verificarPalavras(context);
@@ -223,15 +225,14 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[2]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[3]}");
                     _verificarPalavras(context);
@@ -240,10 +241,9 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[3]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[4]}");
                     _verificarPalavras(context);
@@ -252,10 +252,9 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[4]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[5]}");
                     _verificarPalavras(context);
@@ -264,15 +263,14 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[5]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[6]}");
                     _verificarPalavras(context);
@@ -281,10 +279,9 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[6]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[7]}");
                     _verificarPalavras(context);
@@ -293,10 +290,9 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[7]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
                     clicadas.add("${palavrasSelecionadas[8]}");
                     _verificarPalavras(context);
@@ -305,8 +301,7 @@ class Categoria extends StatelessWidget {
                   },
                   child: Text("${palavrasSelecionadas[8]}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                      style: _fontes)),
             ],
           ),
         ],
@@ -333,7 +328,7 @@ class Categoria extends StatelessWidget {
   }
 
   _verificarPalavras(BuildContext context) {
-    if( clicadas.contains(frutas) ) {
+    if( palavrasSelecionadas.contains(clicadas) ) {
       _palavrasCorretas(context);
       print("Contém");
     }else{
