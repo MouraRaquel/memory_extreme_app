@@ -1,8 +1,18 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/instrucoes.dart';
 
-class Palavras extends StatelessWidget {
+class Palavras extends StatefulWidget {
+
+
+  @override
+  _PalavrasState createState() => _PalavrasState();
+}
+
+class _PalavrasState extends State<Palavras>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +59,9 @@ class Palavras extends StatelessWidget {
         ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
-          _onClickAvancar(context);
+          setState(() {
+            _onClickAvancar(context);
+          });
         }
     );
   }
@@ -59,13 +71,6 @@ class Palavras extends StatelessWidget {
       return Categoria();
     }));
   }
-  /*
-  _button(context, String text, Function onPressed) {
-    return RaisedButton(
-        color: Colors.purple,
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed);
-  }*/
 }
 class OpcoesPalavras extends StatelessWidget {
   @override
@@ -134,6 +139,9 @@ class OpcoesPalavras extends StatelessWidget {
 }
 
 class Categoria extends StatelessWidget {
+
+  List<String> clicadas = [];
+
   List<String> _frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
     'Goiaba', 'Banana', 'Laranja', 'Limão', 'Abacate', 'Pêssego', 'Melância',
     'Melão', 'Maracujá', 'Morango', 'Jamelão', 'Jambo', 'Kiwi',
@@ -168,12 +176,7 @@ class Categoria extends StatelessWidget {
     final _random = new Random();
     var categoriaSelecionada = categorias[_random.nextInt(categorias.length)];
     var categoriaEmbaralhada = (categoriaSelecionada.toList()..shuffle());
-    var palavrasSelecionadasNivelUm = [...categoriaEmbaralhada].take(9).toList();
-    //var palavrasSelecionadasNivelDois = [...categoriaEmbaralhada].take(12).toList();
-    // var palavrasSelecionadasNivelTres = [...categoriaEmbaralhada].take(15).toList();
-    // var palavrasSelecionadasNivelQuatro = [...categoriaEmbaralhada].take(18).toList();
-    // var palavrasSelecionadasNivelCinco = [...categoriaEmbaralhada].take(21).toList();
-    // var palavrasSelecionadasNivelSeis = [...categoriaEmbaralhada].take(24).toList();
+    var palavrasSelecionadas = categoriaEmbaralhada.take(9).toList();
 
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -186,52 +189,124 @@ class Categoria extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[0]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[1]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[2]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[0]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[0]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+                  ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[1]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[1]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[2]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[2]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[3]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[4]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[5]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[3]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[3]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[4]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[4]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[5]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[5]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[6]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[7]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
-              Expanded(flex: 1, child: Text("${palavrasSelecionadasNivelUm[8]}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
-                      color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[6]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[6]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[7]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[7]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50), side: BorderSide()),
+                  onPressed: () {
+                    clicadas.add("${palavrasSelecionadas[8]}");
+                    _verificarPalavras(context);
+                    enabled:
+                    true;
+                  },
+                  child: Text("${palavrasSelecionadas[8]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                          color: Colors.white))),
             ],
           ),
         ],
@@ -255,6 +330,81 @@ class Categoria extends StatelessWidget {
 
   set veiculos(List<String> value) {
     _veiculos = value;
+  }
+
+  _verificarPalavras(BuildContext context) {
+    if( clicadas.contains(frutas) ) {
+      _palavrasCorretas(context);
+      print("Contém");
+    }else{
+      _palavrasErradas(context);
+    }
+  }
+
+  _palavrasCorretas(context){
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text("Parabéns você acertou todas as palavras"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Continuar"),
+                onPressed: () {
+                  _onClickNavigator(context, Palavras());
+                },
+              ),
+              TextButton(
+                child: Text("Sair"),
+                onPressed: () {
+                  _onClickNavigator(context, HomePage());
+                  print("OK !!!");
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+
+  }
+  _palavrasErradas(context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text("Uma pena você errou!"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Recomeçar"),
+                onPressed: () {
+                  _onClickNavigator(context, Palavras());
+                },
+              ),
+              TextButton(
+                child: Text("Sair"),
+                onPressed: () {
+                  _onClickNavigator(context, HomePage());
+                  print("OK !!!");
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _onClickNavigator(BuildContext context, Widget homePage) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return homePage;
+    }));
   }
 }
 
