@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/login.dart';
 
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.black),
-      home: Login(),
+      home: HomePage(),
     );
   }
 }
