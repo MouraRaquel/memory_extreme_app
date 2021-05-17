@@ -9,7 +9,6 @@ class Imagens extends StatefulWidget {
 
   Imagens(this.imagens);
 
-
   @override
   _ImagensState createState() => _ImagensState();
 }
@@ -32,7 +31,7 @@ class _ImagensState extends State<Imagens> {
           return WillPopScope(
             onWillPop: () async => false,
             child: AlertDialog(
-              title: Text("Parabéns você acertou todas as figuras"),
+              title: Text("Parabéns você acertou todas as figuras!!", textAlign: TextAlign.center),
               actions: <Widget>[
                 TextButton(
                   child: Text("Continuar"),
@@ -41,10 +40,9 @@ class _ImagensState extends State<Imagens> {
                   },
                 ),
                 TextButton(
-                  child: Text("Sair"),
+                  child: Text("Sair do Jogo"),
                   onPressed: () {
-                    _onClickNavigator(context, HomePage());
-                    print("OK !!!");
+                    _onClickNavigator(context, Jogos());
                   },
                 )
               ],
@@ -52,8 +50,8 @@ class _ImagensState extends State<Imagens> {
           );
         },
       );
-
     }
+
     _imagensErradas(context) {
       showDialog(
         context: context,
@@ -62,7 +60,7 @@ class _ImagensState extends State<Imagens> {
           return WillPopScope(
             onWillPop: () async => false,
             child: AlertDialog(
-              title: Text("Uma pena você errou!"),
+              title: Text("Uma pena você errou! Quer tentar de novo?", textAlign: TextAlign.center),
               actions: <Widget>[
                 TextButton(
                   child: Text("Recomeçar"),
@@ -71,10 +69,9 @@ class _ImagensState extends State<Imagens> {
                   },
                 ),
                 TextButton(
-                  child: Text("Sair"),
+                  child: Text("Sair do Jogo"),
                   onPressed: () {
-                    _onClickNavigator(context, HomePage());
-                    print("OK !!!");
+                    _onClickNavigator(context, Jogos());
                   },
                 )
               ],
@@ -84,13 +81,15 @@ class _ImagensState extends State<Imagens> {
       );
     }
 
+    int contador = 0;
     _verificarImagens(BuildContext context) {
+      contador += 1;
       if( clicadas.contains(memorizadas) || clicadas.contains(memorizadas2)) {
-        _imagensCorretas(context);
-        print("Contém");
+        if (contador == 2){
+          _imagensCorretas(context);
+        }
       }else{
         _imagensErradas(context);
-        print("Não Contém");
       }
     }
 
@@ -249,8 +248,6 @@ class _ImagensState extends State<Imagens> {
       ),
     );
   }
-
-
 
   void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
