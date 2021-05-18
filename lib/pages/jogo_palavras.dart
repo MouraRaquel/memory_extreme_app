@@ -7,6 +7,7 @@ import 'package:memory_extreme_app/pages/instrucoes.dart';
 
 class Palavras extends StatefulWidget {
 
+  List<String> listaCategoriaEscolhida;
 
   @override
   _PalavrasState createState() => _PalavrasState();
@@ -14,25 +15,27 @@ class Palavras extends StatefulWidget {
 
 class _PalavrasState extends State<Palavras>  {
 
-  List<String> _frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
+  List<String> frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
     'Goiaba', 'Banana', 'Laranja', 'Limão', 'Abacate', 'Pêssego', 'Melância',
     'Melão', 'Maracujá', 'Morango', 'Jamelão', 'Jambo', 'Kiwi',
     'Tangerina', 'Ameixa', 'Carambola', 'Amora', 'Romã', 'Pitaya'
   ];
 
-  List<String> _profissao = ['Advogado', 'Bombeiro', 'Mecânico', 'Porteiro',
+  List<String> profissao = ['Advogado', 'Bombeiro', 'Mecânico', 'Porteiro',
     'Vendedor', 'Professor', 'Empresário', 'Policial', 'Juiz', 'Motorista',
     'Enfermeiro', 'Médico', 'Veterinário', 'Psicólogo', 'Segurança',
     'Faxineira', 'Engenheiro', 'Arquiteto', 'Farmacêutico', 'Dentista',
     'Contador', 'Fotógrafo', 'Pedreiro', 'Padeiro', 'Marceneiro'
   ];
 
-  List<String> _veiculos = ['Carro', 'Avião', 'Moto', 'Bicicleta', 'Trator',
+  List<String> veiculos = ['Carro', 'Avião', 'Moto', 'Bicicleta', 'Trator',
     'Foguete', 'Caminhão', 'Navio', 'Barco', 'Lancha', 'Jatinho',
     'Monomotor', 'Triciclo', 'Van', 'Jetsky', 'Caiaque',
-    'Helicóptero', 'ônibus', 'Trem',  'Metrô', 'Bondinho', 'Teleférico',
+    'Helicóptero', 'Ônibus', 'Trem',  'Metrô', 'Bondinho', 'Teleférico',
     'Carroça', 'Charrete', 'Reboque'
   ];
+
+  List<String> listaCategoriaEscolhida;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +49,14 @@ class _PalavrasState extends State<Palavras>  {
 
   _body(context) {
 
-    var categorias = [_frutas, _veiculos, _profissao];
+    var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
     var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]..shuffle();
-    //var  = categoriaSelecionada..shuffle();
     print("Selecionadas: $palavrasSelecionadas");
+    palavrasSelecionadas..shuffle();
+    listaCategoriaEscolhida = palavrasSelecionadas.take(9).toList();
+    print("Essa é a lista da categoria escolhida:");
+    print(listaCategoriaEscolhida);
 
     Size size = MediaQuery.of(context).size;
 
@@ -68,7 +74,7 @@ class _PalavrasState extends State<Palavras>  {
                 color: Colors.purple,
                 fontWeight: FontWeight.bold,
               ))),
-          Expanded(flex: 6, child: Text(palavrasSelecionadas[0], style: TextStyle(
+          Expanded(flex: 6, child: Text(listaCategoriaEscolhida[0], style: TextStyle(
               fontSize: 40,
               color: Colors.white,
               fontWeight: FontWeight.bold)), ),
@@ -94,46 +100,120 @@ class _PalavrasState extends State<Palavras>  {
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Categoria();
+      return Categoria(listaCategoriaEscolhida);
     }));
   }
 
-  List<String> get frutas => _frutas;
-
-  set frutas(List<String> value) {
-    _frutas = value;
-  }
-
-  List<String> get profissao => _profissao;
-
-  set profissao(List<String> value) {
-    _profissao = value;
-  }
-
-  List<String> get veiculos => _veiculos;
-
-  set veiculos(List<String> value) {
-    _veiculos = value;
-  }
+  // List<String> get frutas => _frutas;
+  //
+  // set frutas(List<String> value) {
+  //   _frutas = value;
+  // }
+  //
+  // List<String> get profissao => _profissao;
+  //
+  // set profissao(List<String> value) {
+  //   _profissao = value;
+  // }
+  //
+  // List<String> get veiculos => _veiculos;
+  //
+  // set veiculos(List<String> value) {
+  //   _veiculos = value;
+  // }
 }
 
+class Categoria extends StatefulWidget {
 
-class Categoria extends StatelessWidget {
+  List<String> categoria;
 
-  List<String> clicadas = [];
-  List<String> palavrasSelecionadas = [];
+  Categoria(this.categoria);
+
+  @override
+  _CategoriaState createState() => _CategoriaState();
+}
+
+class _CategoriaState extends State<Categoria> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _body(context),
-    );
-  }
 
-  _body(context) {
+    String clicadas;
+    List<String> palavrasSelecionadas;
+    palavrasSelecionadas = widget.categoria..shuffle();
 
     var _fontes = TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
         color: Colors.white);
+
+    _palavrasCorretas(context){
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: AlertDialog(
+              title: Text("Parabéns você acertou todas as palavras"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text("Continuar"),
+                  onPressed: () {
+                    _onClickNavigator(context, Palavras());
+                  },
+                ),
+                TextButton(
+                  child: Text("Sair"),
+                  onPressed: () {
+                    _onClickNavigator(context, HomePage());
+                    print("OK !!!");
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      );
+
+    }
+
+    _palavrasErradas(context) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: AlertDialog(
+              title: Text("Uma pena você errou!"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text("Recomeçar"),
+                  onPressed: () {
+                    _onClickNavigator(context, Palavras());
+                  },
+                ),
+                TextButton(
+                  child: Text("Sair"),
+                  onPressed: () {
+                    _onClickNavigator(context, HomePage());
+                    print("OK !!!");
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      );
+    }
+
+    _verificarPalavras(BuildContext context) {
+      if( palavrasSelecionadas.contains(clicadas) ) {
+        _palavrasCorretas(context);
+        print("Contém");
+      }else{
+        _palavrasErradas(context);
+      }
+    }
 
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -149,7 +229,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[0]}");
+                    clicadas = palavrasSelecionadas[0];
                     print(clicadas);
                     _verificarPalavras(context);
                     enabled:
@@ -161,7 +241,7 @@ class Categoria extends StatelessWidget {
                   ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[1]}");
+                    clicadas = palavrasSelecionadas[1];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -172,7 +252,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[2]}");
+                    clicadas = palavrasSelecionadas[2];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -188,7 +268,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[3]}");
+                    clicadas = palavrasSelecionadas[3];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -199,7 +279,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[4]}");
+                    clicadas = palavrasSelecionadas[4];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -210,7 +290,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[5]}");
+                    clicadas = palavrasSelecionadas[5];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -226,7 +306,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[6]}");
+                    clicadas = palavrasSelecionadas[6];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -237,7 +317,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[7]}");
+                    clicadas = palavrasSelecionadas[7];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -248,7 +328,7 @@ class Categoria extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
                   onPressed: () {
-                    clicadas.add("${palavrasSelecionadas[8]}");
+                    clicadas = palavrasSelecionadas[8];
                     _verificarPalavras(context);
                     enabled:
                     true;
@@ -262,78 +342,7 @@ class Categoria extends StatelessWidget {
       ),
     );
   }
-
-
-
-  _verificarPalavras(BuildContext context) {
-    if( palavrasSelecionadas.contains(clicadas) ) {
-      _palavrasCorretas(context);
-      print("Contém");
-    }else{
-      _palavrasErradas(context);
-    }
-  }
-
-  _palavrasCorretas(context){
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => false,
-          child: AlertDialog(
-            title: Text("Parabéns você acertou todas as palavras"),
-            actions: <Widget>[
-              TextButton(
-                child: Text("Continuar"),
-                onPressed: () {
-                  _onClickNavigator(context, Palavras());
-                },
-              ),
-              TextButton(
-                child: Text("Sair"),
-                onPressed: () {
-                  _onClickNavigator(context, HomePage());
-                  print("OK !!!");
-                },
-              )
-            ],
-          ),
-        );
-      },
-    );
-
-  }
-  _palavrasErradas(context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => false,
-          child: AlertDialog(
-            title: Text("Uma pena você errou!"),
-            actions: <Widget>[
-              TextButton(
-                child: Text("Recomeçar"),
-                onPressed: () {
-                  _onClickNavigator(context, Palavras());
-                },
-              ),
-              TextButton(
-                child: Text("Sair"),
-                onPressed: () {
-                  _onClickNavigator(context, HomePage());
-                  print("OK !!!");
-                },
-              )
-            ],
-          ),
-        );
-      },
-    );
-  }
-
+  
   void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return homePage;
