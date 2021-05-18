@@ -27,7 +27,18 @@ class _FigurasState extends State<Figuras> {
     "assets/imagens/relogio.png",
     "assets/imagens/telefone.png",
     "assets/imagens/televisao.png",
-    "assets/imagens/urso.png",
+    "assets/imagens/cafe.png",
+    "assets/imagens/cavalo.png",
+    "assets/imagens/cinema.png",
+    "assets/imagens/clapboard.png",
+    "assets/imagens/computador.png",
+    "assets/imagens/coruja.png",
+    "assets/imagens/camera.png",
+    "assets/imagens/mala.png",
+    "assets/imagens/onibus.png",
+    "assets/imagens/sapatilha.png",
+    "assets/imagens/sorvete.png",
+    "assets/imagens/violao.png",
   ];
 
   @override
@@ -83,9 +94,7 @@ class _FigurasState extends State<Figuras> {
         ),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
-          setState(() {
-            _onClickAvancar(context);
-          });
+          _onClickAvancar(context);
         }
     );
   }

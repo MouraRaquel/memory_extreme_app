@@ -13,136 +13,6 @@ class Palavras extends StatefulWidget {
 }
 
 class _PalavrasState extends State<Palavras>  {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Palavras"),
-      ),
-      body: _body(context),
-    );
-  }
-
-  _body(context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      width: size.width,
-      color: Colors.black,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-        Expanded(flex: 5, child: Text("Memorize essa palavra: ",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
-              ))),
-          Expanded(flex: 6, child: Text(Categoria().frutas[0], style: TextStyle(
-              fontSize: 40,
-              color: Colors.white,
-              fontWeight: FontWeight.bold)), ),
-          Expanded(flex: 0, child: _button(context, "Avançar")),
-        Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white)
-        )),
-        ],
-      ),
-    );
-  }
-
-  _button(context, String text) {
-    return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: () {
-          setState(() {
-            _onClickAvancar(context);
-          });
-        }
-    );
-  }
-
-  _onClickAvancar(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Categoria();
-    }));
-  }
-}
-class OpcoesPalavras extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body: _body(context),
-
-    );
-  }
-
-  _body(context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      width: size.width,
-      color: Colors.black,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(flex: 1, child: Text(
-              "O que você gostaria de fazer?",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-
-              ))),
-          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
-          Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, palavras(context)))),
-          Expanded(flex: 3, child: Text(
-              " ",
-              style: TextStyle(fontSize: 200,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold))),
-        ],
-      ),
-    );
-  }
-
-  _button(context, String text, Function onPressed) {
-    return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed
-    );
-  }
-
-  void _onClickNavigator(BuildContext context, Widget homePage) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return homePage;
-    }));
-  }
-
-  Widget palavras(context) {
-    return InstrucoesPalavras();
-
-  }
-
-}
-
-class Categoria extends StatelessWidget {
-
-  List<String> clicadas = [];
-  List<String> palavrasSelecionadas = [];
-
 
   List<String> _frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
     'Goiaba', 'Banana', 'Laranja', 'Limão', 'Abacate', 'Pêssego', 'Melância',
@@ -167,19 +37,103 @@ class Categoria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Palavras"),
+      ),
       body: _body(context),
     );
   }
 
   _body(context) {
-    var _fontes = TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
-        color: Colors.white);
-    var categorias = [frutas, veiculos, profissao];
+
+    var categorias = [_frutas, _veiculos, _profissao];
     final _random = new Random();
     var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]..shuffle();
     //var  = categoriaSelecionada..shuffle();
     print("Selecionadas: $palavrasSelecionadas");
 
+    Size size = MediaQuery.of(context).size;
+
+    return Container(
+      padding: EdgeInsets.only(top: 40),
+      width: size.width,
+      color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+        Expanded(flex: 5, child: Text("Memorize essa palavra: ",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
+              ))),
+          Expanded(flex: 6, child: Text(palavrasSelecionadas[0], style: TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.bold)), ),
+          Expanded(flex: 0, child: _button(context, "Avançar")),
+        Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white)
+        )),
+        ],
+      ),
+    );
+  }
+
+  _button(context, String text) {
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: () {
+          _onClickAvancar(context);
+        }
+    );
+  }
+
+  _onClickAvancar(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Categoria();
+    }));
+  }
+
+  List<String> get frutas => _frutas;
+
+  set frutas(List<String> value) {
+    _frutas = value;
+  }
+
+  List<String> get profissao => _profissao;
+
+  set profissao(List<String> value) {
+    _profissao = value;
+  }
+
+  List<String> get veiculos => _veiculos;
+
+  set veiculos(List<String> value) {
+    _veiculos = value;
+  }
+}
+
+
+class Categoria extends StatelessWidget {
+
+  List<String> clicadas = [];
+  List<String> palavrasSelecionadas = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _body(context),
+    );
+  }
+
+  _body(context) {
+
+    var _fontes = TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
+        color: Colors.white);
 
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -309,23 +263,7 @@ class Categoria extends StatelessWidget {
     );
   }
 
-  List<String> get frutas => _frutas;
 
-  set frutas(List<String> value) {
-    _frutas = value;
-  }
-
-  List<String> get profissao => _profissao;
-
-  set profissao(List<String> value) {
-    _profissao = value;
-  }
-
-  List<String> get veiculos => _veiculos;
-
-  set veiculos(List<String> value) {
-    _veiculos = value;
-  }
 
   _verificarPalavras(BuildContext context) {
     if( palavrasSelecionadas.contains(clicadas) ) {
@@ -403,3 +341,68 @@ class Categoria extends StatelessWidget {
   }
 }
 
+class OpcoesPalavras extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+      body: _body(context),
+
+    );
+  }
+
+  _body(context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    return Container(
+      padding: EdgeInsets.only(top: 40),
+      width: size.width,
+      color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Expanded(flex: 1, child: Text(
+              "O que você gostaria de fazer?",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+
+              ))),
+          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
+          Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, palavras(context)))),
+          Expanded(flex: 3, child: Text(
+              " ",
+              style: TextStyle(fontSize: 200,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold))),
+        ],
+      ),
+    );
+  }
+
+  _button(context, String text, Function onPressed) {
+    return TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: Colors.purple
+        ),
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: onPressed
+    );
+  }
+
+  void _onClickNavigator(BuildContext context, Widget homePage) {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return homePage;
+    }));
+  }
+
+  Widget palavras(context) {
+    return InstrucoesPalavras();
+
+  }
+
+}
