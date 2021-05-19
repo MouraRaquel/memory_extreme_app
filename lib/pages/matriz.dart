@@ -18,9 +18,8 @@ class _ImagensState extends State<Imagens> {
   @override
   Widget build(BuildContext context) {
 
-    String clicadas;
-    String memorizadas = widget.imagens[0];
-    String memorizadas2 = widget.imagens[1];
+    String clicada;
+    List<String> memorizadas = [widget.imagens[0], widget.imagens[1]];
     List<String> imagensSelecionadas = widget.imagens.take(9).toList();
     imagensSelecionadas..shuffle();
 
@@ -82,13 +81,21 @@ class _ImagensState extends State<Imagens> {
       );
     }
 
-    int contador = 0;
+
+    List<String> clicadas = [];
     _verificarImagens(BuildContext context) {
-      contador += 1;
-      if( clicadas.contains(memorizadas) || clicadas.contains(memorizadas2)) {
-        if (contador == 2){
-          _imagensCorretas(context);
+
+      if( memorizadas.contains(clicada) ) {
+
+        if (clicadas.contains(clicada)){
+
+        }else{
+          clicadas.add(clicada);
+          if (memorizadas.length == clicadas.length){
+            _imagensCorretas(context);
+          }
         }
+
       }else{
         _imagensErradas(context);
       }
@@ -108,9 +115,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[0];
+                    clicada = imagensSelecionadas[0];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -122,9 +128,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[1];
+                    clicada = imagensSelecionadas[1];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -136,9 +141,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[2];
+                    clicada = imagensSelecionadas[2];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -155,9 +159,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[3];
+                    clicada = imagensSelecionadas[3];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -169,9 +172,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[4];
+                    clicada = imagensSelecionadas[4];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -183,9 +185,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[5];
+                    clicada = imagensSelecionadas[5];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -202,9 +203,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[6];
+                    clicada = imagensSelecionadas[6];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -218,9 +218,8 @@ class _ImagensState extends State<Imagens> {
                     primary: Colors.white,
                   ),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[7];
+                    clicada = imagensSelecionadas[7];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
@@ -232,9 +231,8 @@ class _ImagensState extends State<Imagens> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    clicadas = imagensSelecionadas[8];
+                    clicada = imagensSelecionadas[8];
                     _verificarImagens(context);
-                    print(clicadas);
                     enabled:
                     true;
                   },
