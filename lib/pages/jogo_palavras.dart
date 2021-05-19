@@ -6,33 +6,95 @@ import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/instrucoes.dart';
 
 class Palavras extends StatefulWidget {
-
   List<String> listaCategoriaEscolhida;
 
   @override
   _PalavrasState createState() => _PalavrasState();
 }
 
-class _PalavrasState extends State<Palavras>  {
-
-  List<String> frutas = ['Maçã', 'Mamão', 'Abacaxi', 'Pêra', 'Uva', 'Manga',
-    'Goiaba', 'Banana', 'Laranja', 'Limão', 'Abacate', 'Pêssego', 'Melância',
-    'Melão', 'Maracujá', 'Morango', 'Jamelão', 'Jambo', 'Kiwi',
-    'Tangerina', 'Ameixa', 'Carambola', 'Amora', 'Romã', 'Pitaya'
+class _PalavrasState extends State<Palavras> {
+  List<String> frutas = [
+    'Maçã',
+    'Mamão',
+    'Abacaxi',
+    'Pêra',
+    'Uva',
+    'Manga',
+    'Goiaba',
+    'Banana',
+    'Laranja',
+    'Limão',
+    'Abacate',
+    'Pêssego',
+    'Melância',
+    'Melão',
+    'Maracujá',
+    'Morango',
+    'Jamelão',
+    'Jambo',
+    'Kiwi',
+    'Tangerina',
+    'Ameixa',
+    'Carambola',
+    'Amora',
+    'Romã',
+    'Pitaya'
   ];
 
-  List<String> profissao = ['Advogado', 'Bombeiro', 'Mecânico', 'Porteiro',
-    'Vendedor', 'Professor', 'Empresário', 'Policial', 'Juiz', 'Motorista',
-    'Enfermeiro', 'Médico', 'Veterinário', 'Psicólogo', 'Segurança',
-    'Faxineira', 'Engenheiro', 'Arquiteto', 'Farmacêutico', 'Dentista',
-    'Contador', 'Fotógrafo', 'Pedreiro', 'Padeiro', 'Marceneiro'
+  List<String> profissao = [
+    'Advogado',
+    'Bombeiro',
+    'Mecânico',
+    'Porteiro',
+    'Vendedor',
+    'Professor',
+    'Empresário',
+    'Policial',
+    'Juiz',
+    'Motorista',
+    'Enfermeiro',
+    'Médico',
+    'Veterinário',
+    'Psicólogo',
+    'Segurança',
+    'Faxineira',
+    'Engenheiro',
+    'Arquiteto',
+    'Manicure',
+    'Dentista',
+    'Contador',
+    'Fotógrafo',
+    'Pedreiro',
+    'Padeiro',
+    'Marceneiro'
   ];
 
-  List<String> veiculos = ['Carro', 'Avião', 'Moto', 'Bicicleta', 'Trator',
-    'Foguete', 'Caminhão', 'Navio', 'Barco', 'Lancha', 'Jatinho',
-    'Monomotor', 'Triciclo', 'Van', 'Jetsky', 'Caiaque',
-    'Helicóptero', 'Ônibus', 'Trem',  'Metrô', 'Bondinho', 'Teleférico',
-    'Carroça', 'Charrete', 'Reboque'
+  List<String> veiculos = [
+    'Carro',
+    'Avião',
+    'Moto',
+    'Bicicleta',
+    'Trator',
+    'Foguete',
+    'Caminhão',
+    'Navio',
+    'Barco',
+    'Lancha',
+    'Jatinho',
+    'Monomotor',
+    'Triciclo',
+    'Van',
+    'Jetsky',
+    'Caiaque',
+    'Helicóptero',
+    'Ônibus',
+    'Trem',
+    'Metrô',
+    'Bondinho',
+    'Teleférico',
+    'Carroça',
+    'Charrete',
+    'Reboque'
   ];
 
   List<String> listaCategoriaEscolhida;
@@ -48,10 +110,10 @@ class _PalavrasState extends State<Palavras>  {
   }
 
   _body(context) {
-
     var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
-    var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]..shuffle();
+    var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]
+      ..shuffle();
     print("Selecionadas: $palavrasSelecionadas");
     palavrasSelecionadas..shuffle();
     listaCategoriaEscolhida = palavrasSelecionadas.take(9).toList();
@@ -67,20 +129,26 @@ class _PalavrasState extends State<Palavras>  {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-        Expanded(flex: 5, child: Text("Memorize essa palavra: ",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
-              ))),
-          Expanded(flex: 6, child: Text(listaCategoriaEscolhida[0], style: TextStyle(
-              fontSize: 40,
-              color: Colors.white,
-              fontWeight: FontWeight.bold)), ),
+          Expanded(
+              flex: 5,
+              child: Text("Memorize essa palavra: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          Expanded(
+            flex: 6,
+            child: Text(listaCategoriaEscolhida[0],
+                style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+          ),
           Expanded(flex: 0, child: _button(context, "Avançar")),
-        Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white)
-        )),
+          Expanded(
+              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
@@ -88,14 +156,11 @@ class _PalavrasState extends State<Palavras>  {
 
   _button(context, String text) {
     return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
         child: Text(text, style: TextStyle(color: Colors.white)),
         onPressed: () {
           _onClickAvancar(context);
-        }
-    );
+        });
   }
 
   _onClickAvancar(context) {
@@ -103,28 +168,9 @@ class _PalavrasState extends State<Palavras>  {
       return Categoria(listaCategoriaEscolhida);
     }));
   }
-
-  // List<String> get frutas => _frutas;
-  //
-  // set frutas(List<String> value) {
-  //   _frutas = value;
-  // }
-  //
-  // List<String> get profissao => _profissao;
-  //
-  // set profissao(List<String> value) {
-  //   _profissao = value;
-  // }
-  //
-  // List<String> get veiculos => _veiculos;
-  //
-  // set veiculos(List<String> value) {
-  //   _veiculos = value;
-  // }
 }
 
 class Categoria extends StatefulWidget {
-
   List<String> categoria;
 
   Categoria(this.categoria);
@@ -134,18 +180,17 @@ class Categoria extends StatefulWidget {
 }
 
 class _CategoriaState extends State<Categoria> {
-
   @override
   Widget build(BuildContext context) {
-
     String clicadas;
     List<String> palavrasSelecionadas;
     palavrasSelecionadas = widget.categoria..shuffle();
+    var _estiloBotao = (ElevatedButton.styleFrom(
+        primary: Colors.purple, minimumSize: Size(115, 50)));
+    var _fontes = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
-    var _fontes = TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
-        color: Colors.white);
-
-    _palavrasCorretas(context){
+    _palavrasCorretas(context) {
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -173,7 +218,6 @@ class _CategoriaState extends State<Categoria> {
           );
         },
       );
-
     }
 
     _palavrasErradas(context) {
@@ -207,10 +251,10 @@ class _CategoriaState extends State<Categoria> {
     }
 
     _verificarPalavras(BuildContext context) {
-      if( palavrasSelecionadas.contains(clicadas) ) {
+      if (clicadas == palavrasSelecionadas) {
         _palavrasCorretas(context);
         print("Contém");
-      }else{
+      } else {
         _palavrasErradas(context);
       }
     }
@@ -224,125 +268,99 @@ class _CategoriaState extends State<Categoria> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
-                  onPressed: () {
-                    clicadas = palavrasSelecionadas[0];
-                    print(clicadas);
-                    _verificarPalavras(context);
-                    enabled:
-                    true;
-                  },
-                  child: Text("${palavrasSelecionadas[0]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-                  ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
-                  onPressed: () {
-                    clicadas = palavrasSelecionadas[1];
-                    _verificarPalavras(context);
-                    enabled:
-                    true;
-                  },
-                  child: Text("${palavrasSelecionadas[1]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
-                  onPressed: () {
-                    clicadas = palavrasSelecionadas[2];
-                    _verificarPalavras(context);
-                    enabled:
-                    true;
-                  },
-                  child: Text("${palavrasSelecionadas[2]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-            ],
-          ),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                TextButton(
+                    style: _estiloBotao,
+                    onPressed: () {
+                      clicadas = palavrasSelecionadas[0];
+                      print(clicadas);
+                      _verificarPalavras(context);
+                    },
+                    child: Text(palavrasSelecionadas[0],
+                        textAlign: TextAlign.center, style: _fontes)),
+                TextButton(
+                    style: _estiloBotao,
+                    onPressed: () {
+                      clicadas = palavrasSelecionadas[1];
+                      _verificarPalavras(context);
+                    },
+                    child: Text(palavrasSelecionadas[1],
+                        textAlign: TextAlign.center, style: _fontes)),
+                TextButton(
+                    style: _estiloBotao,
+                    onPressed: () {
+                      clicadas = palavrasSelecionadas[2];
+                      _verificarPalavras(context);
+                    },
+                    child: Text(palavrasSelecionadas[2],
+                        textAlign: TextAlign.center, style: _fontes)),
+              ]),
+          Text("", style: TextStyle(color: Colors.white)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[3];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[3]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+                  child: Text(palavrasSelecionadas[3],
+                      textAlign: TextAlign.center, style: _fontes)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[4];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[4]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+                  child: Text(palavrasSelecionadas[4],
+                      textAlign: TextAlign.center, style: _fontes)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[5];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[5]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
+                  child: Text(palavrasSelecionadas[5],
+                      textAlign: TextAlign.center, style: _fontes)),
             ],
           ),
+          Text("", style: TextStyle(color: Colors.white)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[6];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[6]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+                  child: Text(palavrasSelecionadas[6],
+                      textAlign: TextAlign.center, style: _fontes)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[7];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[7]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.purple, minimumSize: Size(100, 50)),
+                  child: Text(palavrasSelecionadas[7],
+                      textAlign: TextAlign.center, style: _fontes)),
+              TextButton(
+                  style: _estiloBotao,
                   onPressed: () {
                     clicadas = palavrasSelecionadas[8];
                     _verificarPalavras(context);
-                    enabled:
-                    true;
                   },
-                  child: Text("${palavrasSelecionadas[8]}",
-                      textAlign: TextAlign.center,
-                      style: _fontes)),
+                  child: Text(palavrasSelecionadas[8],
+                      textAlign: TextAlign.center, style: _fontes)),
             ],
           ),
         ],
       ),
     );
   }
-  
+
   void _onClickNavigator(BuildContext context, Widget homePage) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return homePage;
@@ -354,18 +372,13 @@ class OpcoesPalavras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       body: _body(context),
-
     );
   }
 
   _body(context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
@@ -373,21 +386,30 @@ class OpcoesPalavras extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 1, child: Text(
-              "O que você gostaria de fazer?",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-
-              ))),
-          Expanded(flex: 0, child: _button(context, "   Ir para o Jogo   ", () => _onClickNavigator(context, Palavras()))),
-          Expanded(flex: 0, child: _button(context, "Ir para Instruções", () => _onClickNavigator(context, palavras(context)))),
-          Expanded(flex: 3, child: Text(
-              " ",
-              style: TextStyle(fontSize: 200,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold))),
+          Expanded(
+              flex: 1,
+              child: Text("O que você gostaria de fazer?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          Expanded(
+              flex: 0,
+              child: _button(context, "   Ir para o Jogo   ",
+                  () => _onClickNavigator(context, Palavras()))),
+          Expanded(
+              flex: 0,
+              child: _button(context, "Ir para Instruções",
+                  () => _onClickNavigator(context, palavras(context)))),
+          Expanded(
+              flex: 3,
+              child: Text(" ",
+                  style: TextStyle(
+                      fontSize: 200,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold))),
         ],
       ),
     );
@@ -395,12 +417,9 @@ class OpcoesPalavras extends StatelessWidget {
 
   _button(context, String text, Function onPressed) {
     return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
         child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed
-    );
+        onPressed: onPressed);
   }
 
   void _onClickNavigator(BuildContext context, Widget homePage) {
@@ -411,7 +430,5 @@ class OpcoesPalavras extends StatelessWidget {
 
   Widget palavras(context) {
     return InstrucoesPalavras();
-
   }
-
 }
