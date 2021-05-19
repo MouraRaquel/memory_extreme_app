@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
+import 'package:memory_extreme_app/pages/jogo_figuras1.dart';
 
 class Imagens extends StatefulWidget {
 
@@ -36,7 +37,7 @@ class _ImagensState extends State<Imagens> {
                 TextButton(
                   child: Text("Continuar"),
                   onPressed: () {
-                    _onClickNavigator(context, Figuras());
+                    _onClickNavigator(context, Figuras1());
                   },
                 ),
                 TextButton(
