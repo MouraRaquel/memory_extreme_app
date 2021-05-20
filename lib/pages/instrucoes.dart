@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
+
 class InstrucoesPalavras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,9 +27,13 @@ class InstrucoesPalavras extends StatelessWidget {
           Expanded(
               flex: 5,
               child: Text(
-                  "O jogo das palavras funciona assim: Memorize a palavra que será apresentada, "
-                  "em seguida outras palavras serão apresentadas, "
-                  "mas você precisa selecionar a palavra vista anteriormente!",
+                  "O Jogo das Palavras funciona assim: Memorize a palavra que "
+                  "será apresentada, em seguida você verá uma matriz com "
+                  "algumas palavras, nesse momento você precisará selecionar "
+                  "a palavra memorizada. Na sequência será apresentada uma nova"
+                  "palavra e em seguida uma nova matriz, e então você precisará"
+                  "selecionar as palavras na sequência em que foram "
+                  "memorizadas.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
@@ -85,8 +90,11 @@ class InstrucoesFiguras extends StatelessWidget {
           Expanded(
               flex: 5,
               child: Text(
-                  "O jogo das figuras funciona assim: "
-                  "Memorize as figuras e a seguir tente reconhecê-las.",
+                  "O Jogo das Figuras funciona assim: Aparecerão algumas "
+                  "figuras, memorize-as. Depois, tente encontrá-las no "
+                  "meio de todas as figuras mostradas a seguir. Toque nas "
+                  "figuras que apareceram anteriormente.",
+                  
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
@@ -114,7 +122,7 @@ class InstrucoesFiguras extends StatelessWidget {
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Figuras();
+      return Figuras(9, 2);
     }));
   }
 }
