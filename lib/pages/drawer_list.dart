@@ -51,7 +51,7 @@ class DrawerList extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Figuras()),
+                  MaterialPageRoute(builder: (context) => Figuras(9, 2)),
                 );
               },
             ),
