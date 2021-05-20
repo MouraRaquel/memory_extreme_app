@@ -94,7 +94,7 @@ class InstrucoesFiguras extends StatelessWidget {
                   "figuras, memorize-as. Depois, tente encontrá-las no "
                   "meio de todas as figuras mostradas a seguir. Toque nas "
                   "figuras que apareceram anteriormente.",
-                  
+
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
