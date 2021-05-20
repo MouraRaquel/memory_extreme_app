@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/matriz.dart';
 
 class Figuras extends StatefulWidget {
-
   List<String> imagens;
+  int contador, tamanho;
+
+  Figuras(this.contador, this.tamanho);
 
   @override
   _FigurasState createState() => _FigurasState();
 }
 
 class _FigurasState extends State<Figuras> {
-
   List<String> imagens = [
     "assets/imagens/bicicleta.png",
     "assets/imagens/bola.png",
@@ -41,6 +43,36 @@ class _FigurasState extends State<Figuras> {
     "assets/imagens/violao.png",
   ];
 
+  // int cronometro = 10;
+  // Timer timer;
+  //
+  // @override
+  //
+  // void initState(){
+  //   super.initState();
+  //   startTimer();
+  // }
+  //
+  // @override
+  // void dispose(){
+  //   super.dispose();
+  //
+  // }
+  //
+  // startTimer(){
+  //
+  //   timer = Timer.periodic(Duration(seconds: 1), (Timer timer){
+  //     setState(() {
+  //       if (cronometro > 0){
+  //         cronometro --;
+  //       } else{
+  //         timer.cancel();
+  //         _onClickAvancar(context);
+  //       }
+  //     });
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,30 +82,147 @@ class _FigurasState extends State<Figuras> {
       body: _body(context),
     );
   }
-  _body(context) {
 
+  duasImagens(memorizar) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Expanded(flex: 1, child: _img(memorizar[0])),
+      Expanded(flex: 1, child: _img(memorizar[1]))
+    ]);
+  }
+  tresImagens(memorizar) {
+    return Column(children: <Widget>[
+      Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(flex: 1, child: _img(memorizar[0])),
+            Expanded(flex: 1, child: _img(memorizar[1])),
+          ]),
+      Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(flex: 1, child: _img(memorizar[2])),
+          ])
+    ]);
+  }
+  quatroImagens(memorizar) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[0])),
+            Expanded(flex: 0, child: _img(memorizar[1])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[2])),
+            Expanded(flex: 0, child: _img(memorizar[3])),
+          ]),
+        ]);
+  }
+  cincoImagens(memorizar) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[0])),
+            Expanded(flex: 0, child: _img(memorizar[1])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[2])),
+            Expanded(flex: 0, child: _img(memorizar[3])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 1, child: _img(memorizar[4])),
+          ]),
+        ]);
+  }
+  seisImagens(memorizar) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[0])),
+            Expanded(flex: 0, child: _img(memorizar[1])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[2])),
+            Expanded(flex: 0, child: _img(memorizar[3])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[4])),
+            Expanded(flex: 0, child: _img(memorizar[5])),
+          ]),
+        ]);
+  }
+  seteImagens(memorizar) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[0])),
+            Expanded(flex: 0, child: _img(memorizar[1])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[2])),
+            Expanded(flex: 0, child: _img(memorizar[3])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[4])),
+            Expanded(flex: 0, child: _img(memorizar[5])),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Expanded(flex: 0, child: _img(memorizar[6])),
+          ]),
+        ]);
+  }
+
+  _defineQuantidade(memorizar) {
+
+    if (widget.tamanho == 2) {
+      return duasImagens(memorizar);
+    }
+    if (widget.tamanho == 3) {
+      return tresImagens(memorizar);
+    }
+    if (widget.tamanho == 4) {
+      return quatroImagens(memorizar);
+    }
+    if (widget.tamanho == 5) {
+      return cincoImagens(memorizar);
+    }
+    if (widget.tamanho == 6) {
+      return seisImagens(memorizar);
+    }
+    if (widget.tamanho == 7) {
+      return seteImagens(memorizar);
+    }
+  }
+
+  _body(context) {
     imagens..shuffle();
-    List<String> memorizar = imagens.take(9).toList();
+    List<String> memorizar = imagens.take(widget.contador).toList();
 
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.all(10),
       width: size.width,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 1, child: Text("Memorize essas figuras: ",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
-              ))),
-          Expanded(flex: 1, child: _img(memorizar[0])),
-          Expanded(flex: 1, child: _img(memorizar[1])),
+          Expanded(
+              flex: 0,
+              child: Text("Memorize essas figuras: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          _defineQuantidade(memorizar),
           Expanded(flex: 0, child: _button(context, "Avançar")),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          //Expanded(flex: 1, child: Text('$cronometro', style: TextStyle(color: Colors.purple, fontSize: 50))),
         ],
       ),
     );
@@ -89,19 +238,23 @@ class _FigurasState extends State<Figuras> {
 
   _button(context, String text) {
     return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
-        child: Text(text, style: TextStyle(color: Colors.white)),
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
+        child: Text(text,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
         onPressed: () {
           _onClickAvancar(context);
-        }
-    );
+        });
   }
 
   _onClickAvancar(context) {
-    Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Imagens(imagens),
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              Imagens(imagens, widget.contador, widget.tamanho),
         ));
   }
 }
@@ -136,7 +289,7 @@ class OpcoesFiguras extends StatelessWidget {
           Expanded(
               flex: 0,
               child: _button(context, "   Ir para o Jogo   ",
-                  () => _onClickNavigator(context, Figuras()))),
+                  () => _onClickNavigator(context, Figuras(9, 2)))),
           Expanded(
               flex: 0,
               child: _button(context, "Ir para Instruções",
@@ -155,12 +308,9 @@ class OpcoesFiguras extends StatelessWidget {
 
   _button(context, String text, Function onPressed) {
     return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
+        style: TextButton.styleFrom(backgroundColor: Colors.purple),
         child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed
-    );
+        onPressed: onPressed);
   }
 
   void _onClickNavigator(BuildContext context, Widget homePage) {
