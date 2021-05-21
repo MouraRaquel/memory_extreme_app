@@ -5,6 +5,7 @@ import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
 
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,8 +43,8 @@ class HomePage extends StatelessWidget {
 
   _button(context, String text) {
     return TextButton(
-        style: TextButton.styleFrom(backgroundColor: Colors.purple),
-        child: Text(text, style: TextStyle(color: Colors.white)),
+        style: TextButton.styleFrom(backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
+        child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
         onPressed: () {
           _onClickAvancar(context);
         });
