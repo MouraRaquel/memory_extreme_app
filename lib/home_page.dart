@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/pages/drawer_list.dart';
-import 'package:memory_extreme_app/pages/instrucoes.dart';
-import 'package:memory_extreme_app/pages/jogo_figuras.dart';
-import 'package:memory_extreme_app/pages/jogo_palavras.dart';
-
-
+import 'package:memory_extreme_app/pages/jogos.dart';
+import 'package:memory_extreme_app/pages/login.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -28,32 +25,55 @@ class HomePage extends StatelessWidget {
       color: Colors.black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(flex: 1, child: Text("Memory Extreme", style: TextStyle(
-              fontSize: 32,
-              color: Colors.purple,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'SigmarOne',))),
-        Expanded(flex: 7, child: _img("assets/imagens/cerebro_exercitando.png")),
-        Expanded(flex: 0, child: _button(context, "Avançar")),
+        children: [
+
+              Expanded(flex: 1, child: Text("Memory Extreme", style: TextStyle(
+                  fontSize: 32,
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'SigmarOne',))),
+            Expanded(flex: 7, child: _img("assets/imagens/cerebro_exercitando.png")),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+            Expanded(flex: 0, child: _buttonAdvance(context, "Jogar")),
+              Expanded(flex: 0, child: _buttonExit(context, "Sair")),
+
+            ],
+          ),
           Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
         ],
       ),
     );
   }
 
-  _button(context, String text) {
+  _buttonAdvance(context, String text) {
     return TextButton(
         style: TextButton.styleFrom(backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
         child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
         onPressed: () {
-          _onClickAvancar(context);
+          _onClickAdvance(context);
+        });
+  }
+  _buttonExit(context, String text) {
+    return TextButton(
+        style: TextButton.styleFrom(backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
+        child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
+        onPressed: () {
+          _onClickExit(context);
         });
   }
 
-  _onClickAvancar(context) {
+  _onClickAdvance(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return Jogos();
+    }));
+  }
+
+  _onClickExit(context) {
+    Navigator.pop(context, MaterialPageRoute(builder: (BuildContext context) {
+      return Login();
     }));
   }
 
@@ -63,81 +83,5 @@ class HomePage extends StatelessWidget {
       width: 300,
       height: 300,
     );
-  }
-}
-class Jogos extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Jogos"),
-      ),
-      body: _body(context),
-
-    );
-  }
-
-  _body(context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      width: size.width,
-      color: Colors.black,
-      child: Column(
-
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(flex: 3, child: Text(
-              " ",
-              style: TextStyle(fontSize: 200,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold))),
-          Expanded(flex: 2, child: Text(
-              "Escolha um jogo",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold))),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-
-              Expanded(flex: 0, child: _button(context, "PALAVRAS", () => _onClickNavigator(context, InstrucoesPalavras()))),
-
-              Expanded(flex: 0, child: _button(context, "  FIGURAS  ", () => _onClickNavigator(context, InstrucoesFiguras()))
-              ),
-
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(flex: 5, child: Text(
-                  " ",
-                  style: TextStyle(fontSize: 200,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold))),
-            ], )
-        ],
-      ),
-    );
-  }
-
-  _button(context, String text, Function onPressed) {
-    return TextButton(
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.purple
-        ),
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: onPressed
-    );
-  }
-
-  void _onClickNavigator(BuildContext context, Widget homePage) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return homePage;
-    }));
   }
 }
