@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/home_page.dart';
+import 'package:memory_extreme_app/main.dart';
 import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/matriz.dart';
 
@@ -47,18 +50,6 @@ class _FigurasState extends State<Figuras> {
   // Timer timer;
   //
   // @override
-  //
-  // void initState(){
-  //   super.initState();
-  //   startTimer();
-  // }
-  //
-  // @override
-  // void dispose(){
-  //   super.dispose();
-  //
-  // }
-  //
   // startTimer(){
   //
   //   timer = Timer.periodic(Duration(seconds: 1), (Timer timer){
@@ -72,22 +63,42 @@ class _FigurasState extends State<Figuras> {
   //     });
   //   });
   // }
+  //
+  // void initState(){
+  //   super.initState();
+  //   startTimer();
+  // }
+  //
+  // @override
+  // void dispose(){
+  //   super.dispose();
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: _onBackPressed,
+        child: Scaffold(
       appBar: AppBar(
         title: Text("Figuras"),
       ),
       body: _body(context),
-    );
+    ));
+  }
+
+
+  int num = 0;
+
+  _linhas(memorizar){
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Expanded(flex: 1, child: _img(memorizar[num])),
+      Expanded(flex: 1, child: _img(memorizar[num+1]))
+    ]);
   }
 
   duasImagens(memorizar) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      Expanded(flex: 1, child: _img(memorizar[0])),
-      Expanded(flex: 1, child: _img(memorizar[1]))
-    ]);
+    return _linhas(memorizar);
   }
   tresImagens(memorizar) {
     return Column(children: <Widget>[
@@ -220,8 +231,13 @@ class _FigurasState extends State<Figuras> {
                     color: Colors.purple,
                     fontWeight: FontWeight.bold,
                   ))),
+          Expanded(
+              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
           _defineQuantidade(memorizar),
+          Expanded(
+              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
           Expanded(flex: 0, child: _button(context, "Avançar")),
+
           //Expanded(flex: 1, child: Text('$cronometro', style: TextStyle(color: Colors.purple, fontSize: 50))),
         ],
       ),
@@ -256,6 +272,31 @@ class _FigurasState extends State<Figuras> {
           builder: (context) =>
               Imagens(imagens, widget.contador, widget.tamanho),
         ));
+  }
+
+  Future<bool> _onBackPressed() {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Tem certeza que gostaria de sair do Jogo?', textAlign: TextAlign.center,),
+        content: new Text('Você irá voltar para a página inicial', textAlign: TextAlign.center,),
+        actions: <Widget>[
+          new TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('Não'),
+          ),
+          new TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp()),
+              );
+            },
+            child: new Text('Sim'),
+          ),
+        ],
+      ),
+    ) ?? false;
   }
 }
 
