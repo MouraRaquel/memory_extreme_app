@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/pages/drawer_list.dart';
+import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
@@ -103,9 +104,9 @@ class Jogos extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
 
-              Expanded(flex: 0, child: _button(context, "PALAVRAS", () => _onClickNavigator(context, OpcoesPalavras()))),
+              Expanded(flex: 0, child: _button(context, "PALAVRAS", () => _onClickNavigator(context, InstrucoesPalavras()))),
 
-              Expanded(flex: 0, child: _button(context, "  FIGURAS  ", () => _onClickNavigator(context, OpcoesFiguras()))
+              Expanded(flex: 0, child: _button(context, "  FIGURAS  ", () => _onClickNavigator(context, InstrucoesFiguras()))
               ),
 
             ],
