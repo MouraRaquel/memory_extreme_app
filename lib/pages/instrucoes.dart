@@ -82,7 +82,7 @@ class InstrucoesPalavras extends StatelessWidget {
 
   _onClickAdvance(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Figuras(9, 2);
+      return Palavras();
     }));
   }
 
