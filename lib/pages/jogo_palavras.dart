@@ -5,7 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/main.dart';
 import 'package:memory_extreme_app/pages/drawer_list.dart';
-import 'package:memory_extreme_app/pages/instrucoes.dart';
+
 
 class Palavras extends StatefulWidget {
   List<String> listaCategoriaEscolhida;
@@ -126,8 +126,7 @@ class _PalavrasState extends State<Palavras> {
     var palavrasSelecionadas = categorias[_random.nextInt(categorias.length)]
       ..shuffle();
     print("Selecionadas: $palavrasSelecionadas");
-    palavrasSelecionadas..shuffle();
-    listaCategoriaEscolhida = palavrasSelecionadas.take(9).toList();
+    listaCategoriaEscolhida = palavrasSelecionadas.take(palavrasSelecionadas.length).toList();
     print("Essa é a lista da categoria escolhida:");
     print(listaCategoriaEscolhida);
 
@@ -207,9 +206,9 @@ class _PalavrasState extends State<Palavras> {
 }
 
 class Categoria extends StatefulWidget {
-  List<String> categoria;
-
-  Categoria(this.categoria);
+  List<String> palavrasSelecionadas;
+  int contador = 9;
+  Categoria(this.palavrasSelecionadas);
 
   @override
   _CategoriaState createState() => _CategoriaState();
@@ -227,11 +226,11 @@ class _CategoriaState extends State<Categoria> {
 
   _body(context) {
     String clicada;
-    List<String> palavrasDaMatriz;
-    print(widget.categoria);
-    print(palavrasDaMatriz);
-    palavrasDaMatriz = widget.categoria..shuffle();
-    print("Embaralhadas: $palavrasDaMatriz");
+    List<String> embaralhadas;
+    print(widget.palavrasSelecionadas);
+    embaralhadas = widget.palavrasSelecionadas.take(widget.contador).toList();
+    embaralhadas..shuffle();
+    print("Embaralhadas: $embaralhadas");
 
     var _estiloBotao = (ElevatedButton.styleFrom(
         primary: Colors.purple, minimumSize: Size(110, 50)));
@@ -298,8 +297,8 @@ class _CategoriaState extends State<Categoria> {
       );
     }
 
-    String apresentadas = widget.categoria[0];
-    int contador = 0;
+    String apresentadas = widget.palavrasSelecionadas[0];
+    int count = 0;
     List<String> clicadas = [];
     _verificarPalavras(BuildContext context) {
       if (apresentadas.contains(clicada)) {
@@ -327,27 +326,27 @@ class _CategoriaState extends State<Categoria> {
                 TextButton(
                     style: _estiloBotao,
                     onPressed: () {
-                      clicada = palavrasDaMatriz[0];
+                      clicada = embaralhadas[0];
                       print(clicada);
                       _verificarPalavras(context);
                     },
-                    child: Text(palavrasDaMatriz[0],
+                    child: Text(embaralhadas[0],
                         textAlign: TextAlign.center, style: _fontes)),
                 TextButton(
                     style: _estiloBotao,
                     onPressed: () {
-                      clicada = palavrasDaMatriz[1];
+                      clicada = embaralhadas[1];
                       _verificarPalavras(context);
                     },
-                    child: Text(palavrasDaMatriz[1],
+                    child: Text(embaralhadas[1],
                         textAlign: TextAlign.center, style: _fontes)),
                 TextButton(
                     style: _estiloBotao,
                     onPressed: () {
-                      clicada = palavrasDaMatriz[2];
+                      clicada = embaralhadas[2];
                       _verificarPalavras(context);
                     },
-                    child: Text(palavrasDaMatriz[2],
+                    child: Text(embaralhadas[2],
                         textAlign: TextAlign.center, style: _fontes)),
               ]),
           Text("", style: TextStyle(color: Colors.white)),
@@ -358,26 +357,26 @@ class _CategoriaState extends State<Categoria> {
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[3];
+                    clicada = embaralhadas[3];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[3],
+                  child: Text(embaralhadas[3],
                       textAlign: TextAlign.center, style: _fontes)),
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[4];
+                    clicada = embaralhadas[4];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[4],
+                  child: Text(embaralhadas[4],
                       textAlign: TextAlign.center, style: _fontes)),
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[5];
+                    clicada = embaralhadas[5];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[5],
+                  child: Text(embaralhadas[5],
                       textAlign: TextAlign.center, style: _fontes)),
             ],
           ),
@@ -389,26 +388,26 @@ class _CategoriaState extends State<Categoria> {
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[6];
+                    clicada = embaralhadas[6];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[6],
+                  child: Text(embaralhadas[6],
                       textAlign: TextAlign.center, style: _fontes)),
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[7];
+                    clicada = embaralhadas[7];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[7],
+                  child: Text(embaralhadas[7],
                       textAlign: TextAlign.center, style: _fontes)),
               TextButton(
                   style: _estiloBotao,
                   onPressed: () {
-                    clicada = palavrasDaMatriz[8];
+                    clicada = embaralhadas[8];
                     _verificarPalavras(context);
                   },
-                  child: Text(palavrasDaMatriz[8],
+                  child: Text(embaralhadas[8],
                       textAlign: TextAlign.center, style: _fontes)),
             ],
           ),
