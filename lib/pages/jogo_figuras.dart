@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/main.dart';
-import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/matriz.dart';
 
 class Figuras extends StatefulWidget {
@@ -261,11 +258,11 @@ class _FigurasState extends State<Figuras> {
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
         onPressed: () {
-          _onClickAvancar(context);
+          _onClickAdvance(context);
         });
   }
 
-  _onClickAvancar(context) {
+  _onClickAdvance(context) {
     Navigator.push(
         context,
         MaterialPageRoute(
