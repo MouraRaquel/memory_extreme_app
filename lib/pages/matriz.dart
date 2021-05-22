@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/main.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
+import 'package:memory_extreme_app/pages/jogos.dart';
 
 class Imagens extends StatefulWidget {
   List<String> imagens;
@@ -25,13 +25,13 @@ class _ImagensState extends State<Imagens> {
   }
 
   _body(context) {
-    String clicada;
-    List<String> memorizadas = [];
+    String clicked;
+    List<String> memorized = [];
     int i = 0;
     do {
-      memorizadas.add(widget.imagens[i]);
+      memorized.add(widget.imagens[i]);
       i++;
-    } while (widget.tamanho != memorizadas.length);
+    } while (widget.tamanho != memorized.length);
 
     List<String> imagensSelecionadas =
         widget.imagens.take(widget.contador).toList();
@@ -128,11 +128,11 @@ class _ImagensState extends State<Imagens> {
     List<String> clicadas = [];
 
     _verificarImagens(BuildContext context) {
-      if (memorizadas.contains(clicada)) {
-        if (clicadas.contains(clicada)) {
+      if (memorized.contains(clicked)) {
+        if (clicadas.contains(clicked)) {
         } else {
-          clicadas.add(clicada);
-          if (memorizadas.length == clicadas.length) {
+          clicadas.add(clicked);
+          if (memorized.length == clicadas.length) {
             _imagensCorretas(context);
           }
         }
@@ -150,7 +150,7 @@ class _ImagensState extends State<Imagens> {
           ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.white),
               onPressed: () {
-                clicada = imagensSelecionadas[num];
+                clicked = imagensSelecionadas[num];
                 _verificarImagens(context);
                 enabled:
                 true;
@@ -163,7 +163,7 @@ class _ImagensState extends State<Imagens> {
           ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.white),
               onPressed: () {
-                clicada = imagensSelecionadas[num + 1];
+                clicked = imagensSelecionadas[num + 1];
                 _verificarImagens(context);
                 enabled:
                 true;
@@ -176,7 +176,7 @@ class _ImagensState extends State<Imagens> {
           ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.white),
               onPressed: () {
-                clicada = imagensSelecionadas[num + 2];
+                clicked = imagensSelecionadas[num + 2];
                 _verificarImagens(context);
                 enabled:
                 true;
