@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/main.dart';
 import 'package:memory_extreme_app/pages/drawer_list.dart';
+import 'package:memory_extreme_app/pages/jogos.dart';
 
 class Palavras extends StatefulWidget {
   List<String> listaCategoriaEscolhida;
@@ -168,7 +169,7 @@ class _PalavrasState extends State<Palavras> {
 
     }
 
-    _apresentaPalavras2(){
+    _duasPalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -177,7 +178,7 @@ class _PalavrasState extends State<Palavras> {
         ],
       );
     }
-    _apresentaPalavras3(){
+    _tresPalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -187,7 +188,7 @@ class _PalavrasState extends State<Palavras> {
         ],
       );
     }
-    _apresentaPalavras4(){
+    _quatroPalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -198,7 +199,7 @@ class _PalavrasState extends State<Palavras> {
         ],
       );
     }
-    _apresentaPalavras5(){
+    _cincoPalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -210,7 +211,7 @@ class _PalavrasState extends State<Palavras> {
         ],
       );
     }
-    _apresentaPalavras6(){
+    _seisPalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -223,11 +224,26 @@ class _PalavrasState extends State<Palavras> {
         ],
       );
     }
-    _apresentaPalavras7(){
+    _setePalavras(){
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _linha(nums),
+          _linha(nums += 1),
+          _linha(nums += 1),
+          _linha(nums += 1),
+          _linha(nums += 1),
+          _linha(nums += 1),
+          _linha(nums += 1),
+        ],
+      );
+    }
+    _oitoPalavras(){
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _linha(nums),
+          _linha(nums += 1),
           _linha(nums += 1),
           _linha(nums += 1),
           _linha(nums += 1),
@@ -242,27 +258,31 @@ class _PalavrasState extends State<Palavras> {
       print(widget.total);
       if (widget.total == 2) {
         widget.total += 1;
-        return _apresentaPalavras2();
+        return _duasPalavras();
       }
       if (widget.total == 3) {
         widget.total += 1;
-        return _apresentaPalavras3();
+        return _tresPalavras();
       }
       if (widget.total == 4) {
         widget.total += 1;
-        return _apresentaPalavras4();
+        return _quatroPalavras();
       }
       if (widget.total == 5) {
         widget.total += 1;
-        return _apresentaPalavras5();
+        return _cincoPalavras();
       }
       if (widget.total == 6) {
         widget.total += 1;
-        return _apresentaPalavras6();
+        return _seisPalavras();
       }
       if (widget.total == 7) {
         widget.total += 1;
-        return _apresentaPalavras7();
+        return _setePalavras();
+      }
+      if (widget.total == 8) {
+        widget.total += 1;
+        return _oitoPalavras();
       }
 
     }
@@ -273,21 +293,77 @@ class _PalavrasState extends State<Palavras> {
           fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
 
       Size size = MediaQuery.of(context).size;
-      return Container(
-        padding: EdgeInsets.all(10),
+      return Scaffold(
+          body: Container(
+        padding: EdgeInsets.all(20),
         width: size.width,
         color: Colors.black,
         child: Column(
           children: <Widget>[
-            Text("Memorize essas palavras: ",
-                textAlign: TextAlign.center, style: _fontes),
-            _qtdPalavrasApresentadas(),
-            Text("", style: TextStyle(color: Colors.white)),
-            _button(context, "Avançar"),
-            Text("", style: TextStyle(color: Colors.white)),
+          Expanded(
+          flex: 0,
+          child: Text("Memorize essas palavras: ",
+                textAlign: TextAlign.center, style: _fontes)),
+            Expanded(
+              flex: 6,
+              child: _qtdPalavrasApresentadas()),
+            Expanded(
+              flex: 1,
+              child: Text("", style: TextStyle(color: Colors.white))),
+            Expanded(
+              flex: 0,
+              child: _button(context, "Avançar")),
+            Expanded(
+              flex: 1,
+              child: Text("", style: TextStyle(color: Colors.white))),
           ],
         ),
-      );
+      ));
+    }
+
+    _verifica(context){
+      if (widget.contador > 21){
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: AlertDialog(
+                title: Text("Parabéns você completou o jogo!!",
+                    textAlign: TextAlign.center),
+                actions: <Widget>[
+                  TextButton(
+                      child: Text("Jogar Novamente"),
+                      onPressed: () {
+                        _onClickNavigator(context, Palavras());
+                      }),
+                  TextButton(
+                      child: Text("Sair do Jogo"),
+                      onPressed: () {
+                        _onClickNavigator(context, Jogos());
+                      })
+                ]));
+      }else{
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text("Parabéns você acertou todas as palavras"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Continuar"),
+                onPressed: () {
+                  _onClickNavigator(
+                      context, _novaPalavra(palavrasSelecionadas));
+                },
+              ),
+              TextButton(
+                child: Text("Sair"),
+                onPressed: () {
+                  _onClickNavigator(context, HomePage());
+                  print("OK !!!");
+                },
+              )
+            ],
+          ),
+        );
+      }
     }
 
     _palavrasCorretas(context) {
@@ -295,28 +371,7 @@ class _PalavrasState extends State<Palavras> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return WillPopScope(
-            onWillPop: () async => false,
-            child: AlertDialog(
-              title: Text("Parabéns você acertou todas as palavras"),
-              actions: <Widget>[
-                TextButton(
-                  child: Text("Continuar"),
-                  onPressed: () {
-                    _onClickNavigator(
-                        context, _novaPalavra(palavrasSelecionadas));
-                  },
-                ),
-                TextButton(
-                  child: Text("Sair"),
-                  onPressed: () {
-                    _onClickNavigator(context, HomePage());
-                    print("OK !!!");
-                  },
-                )
-              ],
-            ),
-          );
+          return _verifica(context);
         },
       );
     }
