@@ -4,6 +4,7 @@ import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 
 
+
 class InstrucoesPalavras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
