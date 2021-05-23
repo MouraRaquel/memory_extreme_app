@@ -5,6 +5,7 @@ import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
 import 'package:memory_extreme_app/pages/login.dart';
 
+
 class DrawerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
