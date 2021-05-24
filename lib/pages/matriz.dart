@@ -25,22 +25,21 @@ class _ImagensState extends State<Imagens> {
   }
 
   _body(context) {
+
     String clicked;
     List<String> memorized = [];
     int i = 0;
-    do {
+    while (widget.tamanho != memorized.length){
       memorized.add(widget.imagens[i]);
       i++;
-    } while (widget.tamanho != memorized.length);
+    }
 
     List<String> imagensSelecionadas =
         widget.imagens.take(widget.contador).toList();
-
     widget.contador += 3;
-
     imagensSelecionadas..shuffle();
 
-    _verifica(context) {
+    _verificaNivel(context) {
       if (widget.contador > 24) {
         return WillPopScope(
             onWillPop: () async => false,
@@ -89,7 +88,7 @@ class _ImagensState extends State<Imagens> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return _verifica(context);
+          return _verificaNivel(context);
         },
       );
     }
@@ -106,7 +105,7 @@ class _ImagensState extends State<Imagens> {
                   textAlign: TextAlign.center),
               actions: <Widget>[
                 TextButton(
-                  child: Text("Recomeçar"),
+                  child: Text("Tentar de Novo"),
                   onPressed: () {
                     _onClickNavigator(context,
                         Figuras(widget.contador -= 3, widget.tamanho -= 1));
@@ -190,111 +189,87 @@ class _ImagensState extends State<Imagens> {
       );
     }
 
-    matriz3x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz4x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz5x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz6x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz7x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz8x3(imagensSelecionadas) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
     _defineMatriz(imagensSelecionadas) {
       if (widget.tamanho == 2) {
         widget.tamanho += 1;
-        return matriz3x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.tamanho == 3) {
         widget.tamanho += 1;
-        return matriz4x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.tamanho == 4) {
         widget.tamanho += 1;
-        return matriz5x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.tamanho == 5) {
         widget.tamanho += 1;
-        return matriz6x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.tamanho == 6) {
         widget.tamanho += 1;
-        return matriz7x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.tamanho == 7) {
         widget.tamanho += 1;
-        return matriz8x3(imagensSelecionadas);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
     }
 
