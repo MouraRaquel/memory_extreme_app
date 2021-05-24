@@ -14,6 +14,7 @@ class Figuras extends StatefulWidget {
 }
 
 class _FigurasState extends State<Figuras> {
+
   List<String> imagens = [
     "assets/imagens/bicicleta.png",
     "assets/imagens/bola.png",
@@ -43,34 +44,38 @@ class _FigurasState extends State<Figuras> {
     "assets/imagens/violao.png",
   ];
 
-  // int cronometro = 10;
-  // Timer timer;
-  //
-  // @override
-  // startTimer(){
-  //
-  //   timer = Timer.periodic(Duration(seconds: 1), (Timer timer){
-  //     setState(() {
-  //       if (cronometro > 0){
-  //         cronometro --;
-  //       } else{
-  //         timer.cancel();
-  //         _onClickAvancar(context);
-  //       }
-  //     });
-  //   });
-  // }
-  //
-  // void initState(){
-  //   super.initState();
-  //   startTimer();
-  // }
-  //
-  // @override
-  // void dispose(){
-  //   super.dispose();
-  //
-  // }
+  final StreamController _streamController = StreamController();
+
+  addData()async{
+    for(int i = 10; i<= 1; i--) {
+      await Future.delayed(Duration(seconds: 1));
+      _streamController.sink.add(i);
+    }
+  }
+
+  Stream<int> numberStream() async*{
+    for(int i = 10; i>= 1; i--) {
+      await Future.delayed(Duration(seconds: 1));
+      yield i;
+      if(i == 1){
+        _onClickAdvance(context);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    addData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +204,7 @@ class _FigurasState extends State<Figuras> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
-              flex: 0,
+
               child: Text("Memorize essas figuras: ",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -207,14 +212,19 @@ class _FigurasState extends State<Figuras> {
                     color: Colors.purple,
                     fontWeight: FontWeight.bold,
                   ))),
-          Expanded(
-              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
           _defineQuantidade(memorizar),
-          Expanded(
-              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
-          Expanded(flex: 0, child: _button(context, "Avançar")),
 
-          //Expanded(flex: 1, child: Text('$cronometro', style: TextStyle(color: Colors.purple, fontSize: 50))),
+          Expanded(child: StreamBuilder(
+            stream: numberStream().map((number) => "$number"),
+            builder: (context, snapshot){
+             if (snapshot.connectionState == ConnectionState.waiting)
+                return Text("");
+              return Text("${snapshot.data}", style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 50,
+                  fontFamily: 'SigmarOne'));
+            },
+          )),
         ],
       ),
     );
@@ -226,19 +236,6 @@ class _FigurasState extends State<Figuras> {
       width: 100,
       height: 100,
     );
-  }
-
-  _button(context, String text) {
-    return TextButton(
-        style: TextButton.styleFrom(backgroundColor: Colors.purple),
-        child: Text(text,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold)),
-        onPressed: () {
-          _onClickAdvance(context);
-        });
   }
 
   _onClickAdvance(context) {
