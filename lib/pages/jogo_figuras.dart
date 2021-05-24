@@ -77,133 +77,112 @@ class _FigurasState extends State<Figuras> {
     return WillPopScope(
         onWillPop: _onBackPressed,
         child: Scaffold(
-      appBar: AppBar(
-        title: Text("Figuras"),
-      ),
-      body: _body(context),
-    ));
+          appBar: AppBar(
+            title: Text("Figuras"),
+          ),
+          body: _body(context),
+        ));
   }
-
 
   int num = 0;
 
-  _linhas(memorizar){
+  _linhas(memorizar) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Expanded(flex: 1, child: _img(memorizar[num])),
-      Expanded(flex: 1, child: _img(memorizar[num+1]))
+      Expanded(flex: 1, child: _img(memorizar[num + 1]))
     ]);
-  }
-
-  duasImagens(memorizar) {
-    return _linhas(memorizar);
-  }
-  tresImagens(memorizar) {
-    return Column(children: <Widget>[
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Expanded(flex: 1, child: _img(memorizar[0])),
-            Expanded(flex: 1, child: _img(memorizar[1])),
-          ]),
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Expanded(flex: 1, child: _img(memorizar[2])),
-          ])
-    ]);
-  }
-  quatroImagens(memorizar) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[0])),
-            Expanded(flex: 0, child: _img(memorizar[1])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[2])),
-            Expanded(flex: 0, child: _img(memorizar[3])),
-          ]),
-        ]);
-  }
-  cincoImagens(memorizar) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[0])),
-            Expanded(flex: 0, child: _img(memorizar[1])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[2])),
-            Expanded(flex: 0, child: _img(memorizar[3])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 1, child: _img(memorizar[4])),
-          ]),
-        ]);
-  }
-  seisImagens(memorizar) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[0])),
-            Expanded(flex: 0, child: _img(memorizar[1])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[2])),
-            Expanded(flex: 0, child: _img(memorizar[3])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[4])),
-            Expanded(flex: 0, child: _img(memorizar[5])),
-          ]),
-        ]);
-  }
-  seteImagens(memorizar) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[0])),
-            Expanded(flex: 0, child: _img(memorizar[1])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[2])),
-            Expanded(flex: 0, child: _img(memorizar[3])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[4])),
-            Expanded(flex: 0, child: _img(memorizar[5])),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Expanded(flex: 0, child: _img(memorizar[6])),
-          ]),
-        ]);
   }
 
   _defineQuantidade(memorizar) {
-
     if (widget.tamanho == 2) {
-      return duasImagens(memorizar);
+      return _linhas(memorizar);
     }
     if (widget.tamanho == 3) {
-      return tresImagens(memorizar);
+      return Column(children: <Widget>[
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(flex: 1, child: _img(memorizar[0])),
+              Expanded(flex: 1, child: _img(memorizar[1])),
+            ]),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(flex: 1, child: _img(memorizar[2])),
+            ])
+      ]);
     }
     if (widget.tamanho == 4) {
-      return quatroImagens(memorizar);
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[0])),
+              Expanded(flex: 0, child: _img(memorizar[1])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[2])),
+              Expanded(flex: 0, child: _img(memorizar[3])),
+            ]),
+          ]);
     }
     if (widget.tamanho == 5) {
-      return cincoImagens(memorizar);
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[0])),
+              Expanded(flex: 0, child: _img(memorizar[1])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[2])),
+              Expanded(flex: 0, child: _img(memorizar[3])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 1, child: _img(memorizar[4])),
+            ]),
+          ]);
     }
     if (widget.tamanho == 6) {
-      return seisImagens(memorizar);
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[0])),
+              Expanded(flex: 0, child: _img(memorizar[1])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[2])),
+              Expanded(flex: 0, child: _img(memorizar[3])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[4])),
+              Expanded(flex: 0, child: _img(memorizar[5])),
+            ]),
+          ]);
     }
     if (widget.tamanho == 7) {
-      return seteImagens(memorizar);
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[0])),
+              Expanded(flex: 0, child: _img(memorizar[1])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[2])),
+              Expanded(flex: 0, child: _img(memorizar[3])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[4])),
+              Expanded(flex: 0, child: _img(memorizar[5])),
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Expanded(flex: 0, child: _img(memorizar[6])),
+            ]),
+          ]);
     }
   }
 
@@ -273,27 +252,33 @@ class _FigurasState extends State<Figuras> {
 
   Future<bool> _onBackPressed() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Tem certeza que gostaria de sair do Jogo?', textAlign: TextAlign.center,),
-        content: new Text('Você irá voltar para a página inicial', textAlign: TextAlign.center,),
-        actions: <Widget>[
-          new TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('Não'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text(
+              'Tem certeza que gostaria de sair do Jogo?',
+              textAlign: TextAlign.center,
+            ),
+            content: new Text(
+              'Você irá voltar para a página inicial',
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              new TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('Não'),
+              ),
+              new TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
+                child: new Text('Sim'),
+              ),
+            ],
           ),
-          new TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-            },
-            child: new Text('Sim'),
-          ),
-        ],
-      ),
-    ) ?? false;
+        ) ??
+        false;
   }
 }
-
