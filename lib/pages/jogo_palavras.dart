@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,38 @@ class _PalavrasState extends State<Palavras> {
   ];
 
   List<String> listaCategoriaEscolhida;
+  final StreamController _streamController = StreamController();
+
+  addData()async{
+    for(int i = 10; i<= 1; i--) {
+      await Future.delayed(Duration(seconds: 1));
+      _streamController.sink.add(i);
+    }
+  }
+
+  Stream<int> numberStream() async*{
+    for(int i = 10; i>= 1; i--) {
+      await Future.delayed(Duration(seconds: 1));
+      yield i;
+      if(i == 1){
+        _onClickAvancar(context);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    addData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,22 +173,6 @@ class _PalavrasState extends State<Palavras> {
     }
 
     _adicionaApresentadas();
-
-    _onClickAvancar(context) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-        return _matriz(palavrasSelecionadas);
-      }));
-    }
-
-    _button(context, String text) {
-      return TextButton(
-          style: TextButton.styleFrom(backgroundColor: Colors.purple),
-          child: Text(text, style: TextStyle(color: Colors.white)),
-          onPressed: () {
-            _onClickAvancar(context);
-          });
-    }
 
     int nums = 0;
 
@@ -280,10 +297,17 @@ class _PalavrasState extends State<Palavras> {
             Expanded(
                 flex: 1,
                 child: Text("", style: TextStyle(color: Colors.white))),
-            Expanded(flex: 0, child: _button(context, "Avançar")),
-            Expanded(
-                flex: 1,
-                child: Text("", style: TextStyle(color: Colors.white))),
+            Expanded(child: StreamBuilder(
+              stream: numberStream().map((number) => "$number"),
+              builder: (context, snapshot){
+                if (snapshot.connectionState == ConnectionState.waiting)
+                  return Text("");
+                return Text("${snapshot.data}", style: TextStyle(
+                    color: Colors.purple,
+                    fontSize: 50,
+                    fontFamily: 'SigmarOne'));
+              },
+            )),
           ],
         ),
       ));
@@ -377,7 +401,7 @@ class _PalavrasState extends State<Palavras> {
     List<String> clicadas = [];
 
     _verificarPalavras(BuildContext context) {
-
+      print(apresentadas);
       clicadas.add(clicada);
       if (clicada == apresentadas[count]) {
         count++;
@@ -560,31 +584,28 @@ class _PalavrasState extends State<Palavras> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
-              flex: 5,
               child: Text("Memorize essa palavra: ",
                   textAlign: TextAlign.center, style: _fontes)),
           Expanded(
-              flex: 6,
               child: Text(listaCategoriaEscolhida[0],
                   style: TextStyle(
                       fontSize: 40,
                       color: Colors.white,
                       fontWeight: FontWeight.bold))),
-          Expanded(flex: 1, child: _button(context, "Avançar")),
-          Expanded(
-              flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(child: StreamBuilder(
+            stream: numberStream().map((number) => "$number"),
+            builder: (context, snapshot){
+              if (snapshot.connectionState == ConnectionState.waiting)
+                return Text("");
+              return Text("${snapshot.data}", style: TextStyle(
+                  color: Colors.purple,
+                  fontSize: 50,
+                  fontFamily: 'SigmarOne'));
+            },
+          )),
         ],
       ),
     );
-  }
-
-  _button(context, String text) {
-    return TextButton(
-        style: TextButton.styleFrom(backgroundColor: Colors.purple),
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: () {
-          _onClickAvancar(context);
-        });
   }
 
   _onClickAvancar(context) {
