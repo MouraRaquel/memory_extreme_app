@@ -122,7 +122,6 @@ class _PalavrasState extends State<Palavras> {
     String clicada;
     List<String> embaralhadas;
     embaralhadas = palavrasSelecionadas.take(widget.contador).toList();
-    print(widget.contador);
     embaralhadas..shuffle();
 
     var _estiloBotao = (ElevatedButton.styleFrom(
@@ -131,22 +130,22 @@ class _PalavrasState extends State<Palavras> {
         fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
     List<String> apresentadas = [];
-    int contadors = 0;
+    int counter = 0;
 
     _adicionaApresentadas() {
-      while(apresentadas.length < widget.qtdPalavras) {
-        apresentadas.add(palavrasSelecionadas[contadors]);
-        print("Apresentadas: $apresentadas");
-        contadors ++;
+      while (apresentadas.length < widget.qtdPalavras) {
+        apresentadas.add(palavrasSelecionadas[counter]);
+        counter++;
       }
     }
+
     _adicionaApresentadas();
 
     _onClickAvancar(context) {
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
-            return _matriz(palavrasSelecionadas);
-          }));
+        return _matriz(palavrasSelecionadas);
+      }));
     }
 
     _button(context, String text) {
@@ -160,135 +159,108 @@ class _PalavrasState extends State<Palavras> {
 
     int nums = 0;
 
-    _linha(nums){
+    _linha(nums) {
       return Text(palavrasSelecionadas[nums],
           style: TextStyle(
-              fontSize: 40,
-              color: Colors.white,
-              fontWeight: FontWeight.bold));
-
+              fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold));
     }
 
-    _duasPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _tresPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _quatroPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _cincoPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _seisPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _setePalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
-    _oitoPalavras(){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linha(nums),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-          _linha(nums += 1),
-        ],
-      );
-    }
+    _qtdPalavrasApresentadas() {
 
-    _qtdPalavrasApresentadas(){
-      print(widget.total);
       if (widget.total == 2) {
         widget.total += 1;
-        return _duasPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 3) {
         widget.total += 1;
-        return _tresPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 4) {
         widget.total += 1;
-        return _quatroPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 5) {
         widget.total += 1;
-        return _cincoPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 6) {
         widget.total += 1;
-        return _seisPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 7) {
         widget.total += 1;
-        return _setePalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
       if (widget.total == 8) {
         widget.total += 1;
-        return _oitoPalavras();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linha(nums),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+            _linha(nums += 1),
+          ],
+        );
       }
-
     }
 
     _novaPalavra(palavrasSelecionadas) {
-
       var _fontes = TextStyle(
           fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
 
@@ -300,29 +272,25 @@ class _PalavrasState extends State<Palavras> {
         color: Colors.black,
         child: Column(
           children: <Widget>[
-          Expanded(
-          flex: 0,
-          child: Text("Memorize essas palavras: ",
-                textAlign: TextAlign.center, style: _fontes)),
             Expanded(
-              flex: 6,
-              child: _qtdPalavrasApresentadas()),
+                flex: 0,
+                child: Text("Memorize essas palavras: ",
+                    textAlign: TextAlign.center, style: _fontes)),
+            Expanded(flex: 6, child: _qtdPalavrasApresentadas()),
             Expanded(
-              flex: 1,
-              child: Text("", style: TextStyle(color: Colors.white))),
+                flex: 1,
+                child: Text("", style: TextStyle(color: Colors.white))),
+            Expanded(flex: 0, child: _button(context, "Avançar")),
             Expanded(
-              flex: 0,
-              child: _button(context, "Avançar")),
-            Expanded(
-              flex: 1,
-              child: Text("", style: TextStyle(color: Colors.white))),
+                flex: 1,
+                child: Text("", style: TextStyle(color: Colors.white))),
           ],
         ),
       ));
     }
 
-    _verifica(context){
-      if (widget.contador > 21){
+    _verifica(context) {
+      if (widget.contador > 24) {
         return WillPopScope(
             onWillPop: () async => false,
             child: AlertDialog(
@@ -340,11 +308,12 @@ class _PalavrasState extends State<Palavras> {
                         _onClickNavigator(context, Jogos());
                       })
                 ]));
-      }else{
+      } else {
         return WillPopScope(
           onWillPop: () async => false,
           child: AlertDialog(
-            title: Text("Parabéns você acertou todas as palavras"),
+            title: Text("Parabéns você acertou todas as palavras",
+                textAlign: TextAlign.center),
             actions: <Widget>[
               TextButton(
                 child: Text("Continuar"),
@@ -357,7 +326,6 @@ class _PalavrasState extends State<Palavras> {
                 child: Text("Sair"),
                 onPressed: () {
                   _onClickNavigator(context, HomePage());
-                  print("OK !!!");
                 },
               )
             ],
@@ -396,7 +364,6 @@ class _PalavrasState extends State<Palavras> {
                   child: Text("Sair"),
                   onPressed: () {
                     _onClickNavigator(context, HomePage());
-                    print("OK !!!");
                   },
                 )
               ],
@@ -411,16 +378,14 @@ class _PalavrasState extends State<Palavras> {
 
     _verificarPalavras(BuildContext context) {
 
-      count ++;
       clicadas.add(clicada);
-      if (clicadas.length == apresentadas.length) {
-        for (int i = 0; i < count; i++) {
-          if (apresentadas[i] == clicadas[i]) {
-            _palavrasCorretas(context);
-          } else {
-            _palavrasErradas(context);
-          }
+      if (clicada == apresentadas[count]) {
+        count++;
+        if (clicadas.length == apresentadas.length){
+          _palavrasCorretas(context);
         }
+      } else {
+        _palavrasErradas(context);
       }
     }
 
@@ -442,20 +407,19 @@ class _PalavrasState extends State<Palavras> {
             TextButton(
                 style: _estiloBotao,
                 onPressed: () {
-                  clicada = embaralhadas[num+1];
+                  clicada = embaralhadas[num + 1];
                   _verificarPalavras(context);
                 },
-                child: Text(embaralhadas[num+1],
+                child: Text(embaralhadas[num + 1],
                     textAlign: TextAlign.center, style: _fontes)),
             TextButton(
                 style: _estiloBotao,
                 onPressed: () {
-                  clicada = embaralhadas[num+2];
+                  clicada = embaralhadas[num + 2];
                   _verificarPalavras(context);
                 },
-                child: Text(embaralhadas[num+2],
+                child: Text(embaralhadas[num + 2],
                     textAlign: TextAlign.center, style: _fontes)),
-
             Text("", style: TextStyle(color: Colors.white)),
           ]);
     }
@@ -466,81 +430,6 @@ class _PalavrasState extends State<Palavras> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz4x3(palavras) {
-      widget.qtdPalavras += 1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz5x3(palavras) {
-      widget.qtdPalavras += 1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz6x3(palavras) {
-      widget.qtdPalavras += 1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz7x3(palavras) {
-      widget.qtdPalavras += 1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-        ],
-      );
-    }
-
-    matriz8x3(palavras) {
-      widget.qtdPalavras += 1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _linhas(num),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
-          _linhas(num += 3),
           _linhas(num += 3),
           _linhas(num += 3),
         ],
@@ -560,23 +449,78 @@ class _PalavrasState extends State<Palavras> {
       }
       if (widget.qtdPalavras == 4) {
         widget.contador += 3;
-        return matriz4x3(palavrasSelecionadas);
+        widget.qtdPalavras += 1;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.qtdPalavras == 5) {
         widget.contador += 3;
-        return matriz5x3(palavrasSelecionadas);
+        widget.qtdPalavras += 1;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.qtdPalavras == 6) {
         widget.contador += 3;
-        return matriz6x3(palavrasSelecionadas);
+        widget.qtdPalavras += 1;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.qtdPalavras == 7) {
         widget.contador += 3;
-        return matriz7x3(palavrasSelecionadas);
+        widget.qtdPalavras += 1;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
       if (widget.qtdPalavras == 8) {
         widget.contador += 3;
-        return matriz8x3(palavrasSelecionadas);
+        widget.qtdPalavras += 1;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _linhas(num),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+            _linhas(num += 3),
+          ],
+        );
       }
     }
 
@@ -585,8 +529,7 @@ class _PalavrasState extends State<Palavras> {
         padding: EdgeInsets.all(2),
         width: size.width,
         color: Colors.black,
-        child: _defineMatriz(palavrasSelecionadas)
-    );
+        child: _defineMatriz(palavrasSelecionadas));
   }
 
   void _onClickNavigator(BuildContext context, Widget homePage) {
@@ -596,6 +539,7 @@ class _PalavrasState extends State<Palavras> {
   }
 
   _body(context) {
+
     var _fontes = TextStyle(
         fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
 
@@ -605,8 +549,6 @@ class _PalavrasState extends State<Palavras> {
       ..shuffle();
     listaCategoriaEscolhida =
         palavrasSelecionadas.take(palavrasSelecionadas.length).toList();
-    print("Essa é a lista da categoria escolhida:");
-    print(listaCategoriaEscolhida);
 
     Size size = MediaQuery.of(context).size;
 
@@ -647,40 +589,39 @@ class _PalavrasState extends State<Palavras> {
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return _matriz(
-          listaCategoriaEscolhida);
+      return _matriz(listaCategoriaEscolhida);
     }));
   }
 
   Future<bool> _onBackPressed() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text(
-          'Tem certeza que gostaria de sair do Jogo?',
-          textAlign: TextAlign.center,
-        ),
-        content: new Text(
-          'Você irá voltar para a página inicial',
-          textAlign: TextAlign.center,
-        ),
-        actions: <Widget>[
-          new TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('Não'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text(
+              'Tem certeza que gostaria de sair do Jogo?',
+              textAlign: TextAlign.center,
+            ),
+            content: new Text(
+              'Você irá voltar para a página inicial',
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              new TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('Não'),
+              ),
+              new TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
+                child: new Text('Sim'),
+              ),
+            ],
           ),
-          new TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-            },
-            child: new Text('Sim'),
-          ),
-        ],
-      ),
-    ) ??
+        ) ??
         false;
   }
 }
