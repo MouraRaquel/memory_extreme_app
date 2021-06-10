@@ -47,14 +47,14 @@ class _FigurasState extends State<Figuras> {
   final StreamController _streamController = StreamController();
 
   addData()async{
-    for(int i = 10; i<= 1; i--) {
+    for(int i = 15; i<= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       _streamController.sink.add(i);
     }
   }
 
   Stream<int> numberStream() async*{
-    for(int i = 10; i>= 1; i--) {
+    for(int i = 15; i>= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       yield i;
       if(i == 1){
