@@ -107,14 +107,14 @@ class _PalavrasState extends State<Palavras> {
   final StreamController _streamController = StreamController();
 
   addData()async{
-    for(int i = 5; i<= 1; i--) {
+    for(int i = 15; i<= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       _streamController.sink.add(i);
     }
   }
 
   Stream<int> numberStream() async*{
-    for(int i = 5; i>= 1; i--) {
+    for(int i = 15; i>= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       yield i;
       if(i == 1){
@@ -158,7 +158,7 @@ class _PalavrasState extends State<Palavras> {
     embaralhadas..shuffle();
 
     var _estiloBotao = (ElevatedButton.styleFrom(
-        primary: Colors.blue, minimumSize: Size(110, 50)));
+        primary: Colors.purple, minimumSize: Size(110, 50)));
     var _fontes = TextStyle(
         fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
@@ -179,7 +179,7 @@ class _PalavrasState extends State<Palavras> {
     _linha(nums) {
       return Text(palavrasSelecionadas[nums],
           style: TextStyle(
-              fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold));
+              fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold));
     }
 
     _qtdPalavrasApresentadas() {
@@ -279,38 +279,38 @@ class _PalavrasState extends State<Palavras> {
 
     _novaPalavra(palavrasSelecionadas) {
       var _fontes = TextStyle(
-          fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold);
+          fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
 
       Size size = MediaQuery.of(context).size;
       return Scaffold(
           body: Container(
-        padding: EdgeInsets.all(20),
-        width: size.width,
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                flex: 0,
-                child: Text("Memorize essas palavras: ",
-                    textAlign: TextAlign.center, style: _fontes)),
-            Expanded(flex: 6, child: _qtdPalavrasApresentadas()),
-            Expanded(
-                flex: 1,
-                child: Text("", style: TextStyle(color: Colors.white))),
-            Expanded(child: StreamBuilder(
-              stream: numberStream().map((number) => "$number"),
-              builder: (context, snapshot){
-                if (snapshot.connectionState == ConnectionState.waiting)
-                  return Text("");
-                return Text("${snapshot.data}", style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 50,
-                    fontFamily: 'SigmarOne'));
-              },
-            )),
-          ],
-        ),
-      ));
+            padding: EdgeInsets.all(20),
+            width: size.width,
+            color: Colors.black,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                    flex: 0,
+                    child: Text("Memorize essas palavras: ",
+                        textAlign: TextAlign.center, style: _fontes)),
+                Expanded(flex: 6, child: _qtdPalavrasApresentadas()),
+                Expanded(
+                    flex: 1,
+                    child: Text("", style: TextStyle(color: Colors.white))),
+                Expanded(child: StreamBuilder(
+                  stream: numberStream().map((number) => "$number"),
+                  builder: (context, snapshot){
+                    if (snapshot.connectionState == ConnectionState.waiting)
+                      return Text("");
+                    return Text("${snapshot.data}", style: TextStyle(
+                        color: Colors.purple,
+                        fontSize: 50,
+                        fontFamily: 'SigmarOne'));
+                  },
+                )),
+              ],
+            ),
+          ));
     }
 
     _verifica(context) {
@@ -551,7 +551,7 @@ class _PalavrasState extends State<Palavras> {
     return Container(
         padding: EdgeInsets.all(2),
         width: size.width,
-        color: Colors.white,
+        color: Colors.black,
         child: _defineMatriz(palavrasSelecionadas));
   }
 
@@ -564,7 +564,7 @@ class _PalavrasState extends State<Palavras> {
   _body(context) {
 
     var _fontes = TextStyle(
-        fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold);
+        fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
 
     var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
@@ -578,7 +578,7 @@ class _PalavrasState extends State<Palavras> {
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
-      color: Colors.white,
+      color: Colors.black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -589,7 +589,7 @@ class _PalavrasState extends State<Palavras> {
               child: Text(listaCategoriaEscolhida[0],
                   style: TextStyle(
                       fontSize: 40,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold))),
           Expanded(child: StreamBuilder(
             stream: numberStream().map((number) => "$number"),
@@ -597,7 +597,7 @@ class _PalavrasState extends State<Palavras> {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Text("");
               return Text("${snapshot.data}", style: TextStyle(
-                  color: Colors.red,
+                  color: Colors.purple,
                   fontSize: 50,
                   fontFamily: 'SigmarOne'));
             },
@@ -615,33 +615,33 @@ class _PalavrasState extends State<Palavras> {
 
   Future<bool> _onBackPressed() {
     return showDialog(
-          context: context,
-          builder: (context) => new AlertDialog(
-            title: new Text(
-              'Tem certeza que gostaria de sair do Jogo?',
-              textAlign: TextAlign.center,
-            ),
-            content: new Text(
-              'Você irá voltar para a página inicial',
-              textAlign: TextAlign.center,
-            ),
-            actions: <Widget>[
-              new TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('Não'),
-              ),
-              new TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  );
-                },
-                child: new Text('Sim'),
-              ),
-            ],
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text(
+          'Tem certeza que gostaria de sair do Jogo?',
+          textAlign: TextAlign.center,
+        ),
+        content: new Text(
+          'Você irá voltar para a página inicial',
+          textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          new TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('Não'),
           ),
-        ) ??
+          new TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp()),
+              );
+            },
+            child: new Text('Sim'),
+          ),
+        ],
+      ),
+    ) ??
         false;
   }
 }
