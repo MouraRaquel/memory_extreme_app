@@ -107,14 +107,14 @@ class _PalavrasState extends State<Palavras> {
   final StreamController _streamController = StreamController();
 
   addData()async{
-    for(int i = 10; i<= 1; i--) {
+    for(int i = 5; i<= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       _streamController.sink.add(i);
     }
   }
 
   Stream<int> numberStream() async*{
-    for(int i = 10; i>= 1; i--) {
+    for(int i = 5; i>= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       yield i;
       if(i == 1){
@@ -158,7 +158,7 @@ class _PalavrasState extends State<Palavras> {
     embaralhadas..shuffle();
 
     var _estiloBotao = (ElevatedButton.styleFrom(
-        primary: Colors.purple, minimumSize: Size(110, 50)));
+        primary: Colors.blue, minimumSize: Size(110, 50)));
     var _fontes = TextStyle(
         fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
@@ -179,7 +179,7 @@ class _PalavrasState extends State<Palavras> {
     _linha(nums) {
       return Text(palavrasSelecionadas[nums],
           style: TextStyle(
-              fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold));
+              fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold));
     }
 
     _qtdPalavrasApresentadas() {
@@ -279,14 +279,14 @@ class _PalavrasState extends State<Palavras> {
 
     _novaPalavra(palavrasSelecionadas) {
       var _fontes = TextStyle(
-          fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
+          fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold);
 
       Size size = MediaQuery.of(context).size;
       return Scaffold(
           body: Container(
         padding: EdgeInsets.all(20),
         width: size.width,
-        color: Colors.black,
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Expanded(
@@ -303,7 +303,7 @@ class _PalavrasState extends State<Palavras> {
                 if (snapshot.connectionState == ConnectionState.waiting)
                   return Text("");
                 return Text("${snapshot.data}", style: TextStyle(
-                    color: Colors.purple,
+                    color: Colors.red,
                     fontSize: 50,
                     fontFamily: 'SigmarOne'));
               },
@@ -401,7 +401,6 @@ class _PalavrasState extends State<Palavras> {
     List<String> clicadas = [];
 
     _verificarPalavras(BuildContext context) {
-      print(apresentadas);
       clicadas.add(clicada);
       if (clicada == apresentadas[count]) {
         count++;
@@ -552,7 +551,7 @@ class _PalavrasState extends State<Palavras> {
     return Container(
         padding: EdgeInsets.all(2),
         width: size.width,
-        color: Colors.black,
+        color: Colors.white,
         child: _defineMatriz(palavrasSelecionadas));
   }
 
@@ -565,7 +564,7 @@ class _PalavrasState extends State<Palavras> {
   _body(context) {
 
     var _fontes = TextStyle(
-        fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold);
+        fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold);
 
     var categorias = [frutas, veiculos, profissao];
     final _random = new Random();
@@ -579,7 +578,7 @@ class _PalavrasState extends State<Palavras> {
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
-      color: Colors.black,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -590,7 +589,7 @@ class _PalavrasState extends State<Palavras> {
               child: Text(listaCategoriaEscolhida[0],
                   style: TextStyle(
                       fontSize: 40,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold))),
           Expanded(child: StreamBuilder(
             stream: numberStream().map((number) => "$number"),
@@ -598,7 +597,7 @@ class _PalavrasState extends State<Palavras> {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Text("");
               return Text("${snapshot.data}", style: TextStyle(
-                  color: Colors.purple,
+                  color: Colors.red,
                   fontSize: 50,
                   fontFamily: 'SigmarOne'));
             },

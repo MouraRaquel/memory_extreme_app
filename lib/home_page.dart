@@ -4,6 +4,7 @@ import 'package:memory_extreme_app/pages/drawer_list.dart';
 import 'package:memory_extreme_app/pages/jogos.dart';
 import 'package:memory_extreme_app/pages/login.dart';
 
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,14 @@ class HomePage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 2),
       width: size.width,
-      color: Colors.black,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
               Expanded(flex: 1, child: Text("Memory Extreme", style: TextStyle(
                   fontSize: 32,
-                  color: Colors.purple,
+                  color: Colors.purple[400],
                   fontWeight: FontWeight.bold,
                   fontFamily: 'SigmarOne',))),
             Expanded(flex: 7, child: _img("assets/imagens/cerebro_exercitando.png")),
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
 
             ],
           ),
-          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.white))),
+          Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.black))),
         ],
       ),
     );

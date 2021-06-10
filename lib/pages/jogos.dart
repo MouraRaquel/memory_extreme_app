@@ -26,7 +26,7 @@ class _JogosState extends State<Jogos> {
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
-      color: Colors.black,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -42,8 +42,8 @@ class _JogosState extends State<Jogos> {
               child: Text("Escolha um jogo",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
+                      fontSize: 40,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold))),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
