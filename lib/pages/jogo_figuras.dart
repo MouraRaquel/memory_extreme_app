@@ -9,7 +9,7 @@ class Figuras extends StatefulWidget {
 
   Figuras(this.contador, this.tamanho);
 
-  @override
+
   _FigurasState createState() => _FigurasState();
 }
 
@@ -65,14 +65,12 @@ class _FigurasState extends State<Figuras> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _streamController.close();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     addData();
   }

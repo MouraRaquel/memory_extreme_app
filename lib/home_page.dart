@@ -8,7 +8,6 @@ import 'package:memory_extreme_app/pages/login.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text("Memory Extreme", style: TextStyle(
         color: Colors.black,)),),
