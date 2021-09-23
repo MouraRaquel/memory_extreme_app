@@ -6,6 +6,7 @@ import 'package:memory_extreme_app/pages/matriz.dart';
 class Figuras extends StatefulWidget {
   List<String> imagens;
   int contador, tamanho;
+  bool avancarClicked = false;
 
   Figuras(this.contador, this.tamanho);
 
@@ -14,7 +15,6 @@ class Figuras extends StatefulWidget {
 }
 
 class _FigurasState extends State<Figuras> {
-
   List<String> imagens = [
     "assets/imagens/bicicleta.png",
     "assets/imagens/bola.png",
@@ -46,18 +46,21 @@ class _FigurasState extends State<Figuras> {
 
   final StreamController _streamController = StreamController();
 
-  addData()async{
-    for(int i = 15; i<= 1; i--) {
+  addData() async {
+    for (int i = 15; i <= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       _streamController.sink.add(i);
     }
   }
 
-  Stream<int> numberStream() async*{
-    for(int i = 15; i>= 1; i--) {
+  Stream<int> numberStream() async* {
+    for (int i = 15; i >= 1; i--) {
       await Future.delayed(Duration(seconds: 1));
       yield i;
-      if(i == 1){
+      if (widget.avancarClicked == true) {
+        _onClickAdvance(context);
+      }
+      if (i == 1) {
         _onClickAdvance(context);
       }
     }
@@ -204,7 +207,6 @@ class _FigurasState extends State<Figuras> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
-
               child: Text("Memorize essas figuras: ",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -213,18 +215,22 @@ class _FigurasState extends State<Figuras> {
                     fontWeight: FontWeight.bold,
                   ))),
           _defineQuantidade(memorizar),
-
-          Expanded(child: StreamBuilder(
+          Expanded(
+              child: StreamBuilder(
             stream: numberStream().map((number) => "$number"),
-            builder: (context, snapshot){
-             if (snapshot.connectionState == ConnectionState.waiting)
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting)
                 return Text("");
-              return Text("${snapshot.data}", style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 50,
-                  fontFamily: 'SigmarOne'));
+              return Text("${snapshot.data}",
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 50,
+                      fontFamily: 'SigmarOne'));
             },
           )),
+          // Text(""),
+          // Expanded(flex: 0, child: ElevatedButton(onPressed: (){_buttonAdvance(context, "Avançar");})),
+          // Text(""),
         ],
       ),
     );
@@ -237,6 +243,19 @@ class _FigurasState extends State<Figuras> {
       height: 100,
     );
   }
+
+  // _buttonAdvance(context, String text) {
+  //   widget.avancarClicked = true;
+  //   print("esse é o contador ");
+  //   print(widget.avancarClicked);
+  //   return TextButton(
+  //       style: TextButton.styleFrom(
+  //           backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
+  //       child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
+  //       onPressed: () {
+  //         _onClickAdvance(context);
+  //       });
+  // }
 
   _onClickAdvance(context) {
     Navigator.push(
