@@ -15,10 +15,13 @@ class InstrucoesPalavras extends StatelessWidget {
   }
 
   _body(context) {
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       physics: const AlwaysScrollableScrollPhysics(),
       child: Container(
+        width: size.width,
+        height: size.height,
         padding: EdgeInsets.all(10),
         color: Colors.white,
         child: Column(

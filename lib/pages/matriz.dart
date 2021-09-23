@@ -280,6 +280,7 @@ class _ImagensState extends State<Imagens> {
     return Container(
       padding: EdgeInsets.all(2),
       width: size.width,
+      height: size.height,
       color: Colors.white,
       child: _defineMatriz(imagensSelecionadas),
     );

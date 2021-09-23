@@ -579,6 +579,7 @@ class _PalavrasState extends State<Palavras> {
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
+      height: size.height,
       color: Colors.black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

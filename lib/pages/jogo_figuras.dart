@@ -202,6 +202,7 @@ class _FigurasState extends State<Figuras> {
     return Container(
       padding: EdgeInsets.all(10),
       width: size.width,
+      height: size.height,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

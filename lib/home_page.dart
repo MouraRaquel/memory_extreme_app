@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 2),
       width: size.width,
+      height: size.height,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

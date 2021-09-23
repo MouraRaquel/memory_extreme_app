@@ -26,6 +26,7 @@ class _JogosState extends State<Jogos> {
     return Container(
       padding: EdgeInsets.only(top: 40),
       width: size.width,
+      height: size.height,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

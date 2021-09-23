@@ -16,9 +16,13 @@ class Login extends StatelessWidget {
   }
 
   _body(context) {
+    Size size = MediaQuery.of(context).size;
     return Form(
+      
       key: _formKey,
       child: Container(
+        width: size.width,
+        height: size.height,
         padding: EdgeInsets.all(16),
         child: ListView(
           children: <Widget>[
