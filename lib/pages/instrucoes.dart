@@ -32,11 +32,12 @@ class InstrucoesPalavras extends StatelessWidget {
 
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 35,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 )),
         Text(""),
+            Text(""),Text(""), Text(""),Text(""),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
@@ -113,11 +114,11 @@ class InstrucoesFiguras extends StatelessWidget {
               "figuras que apareceram anteriormente.",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 35,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               )),
-          Text(""),
+          Text(""),Text(""),Text(""),Text(""),Text(""),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
