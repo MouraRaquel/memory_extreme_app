@@ -294,9 +294,7 @@ class _PalavrasState extends State<Palavras> {
                     child: Text("Memorize essas palavras: ",
                         textAlign: TextAlign.center, style: _fontes)),
                 Expanded(flex: 6, child: _qtdPalavrasApresentadas()),
-                Expanded(
-                    flex: 1,
-                    child: Text("", style: TextStyle(color: Colors.white))),
+                Text(""),
                 Expanded(child: StreamBuilder(
                   stream: numberStream().map((number) => "$number"),
                   builder: (context, snapshot){
@@ -308,6 +306,9 @@ class _PalavrasState extends State<Palavras> {
                         fontFamily: 'SigmarOne'));
                   },
                 )),
+                // Text(""),
+                // Expanded(flex: 0, child: _buttonAdvance(context, "Avançar")),
+                // Text(""),
               ],
             ),
           ));
@@ -602,10 +603,22 @@ class _PalavrasState extends State<Palavras> {
                   fontFamily: 'SigmarOne'));
             },
           )),
+          // Expanded(flex: 0, child: _buttonAdvance(context, "Avançar")),
+          // Text(""),
         ],
       ),
     );
   }
+
+  // _buttonAdvance(context, String text) {
+  //   return TextButton(
+  //       style: TextButton.styleFrom(
+  //           backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
+  //       child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
+  //       onPressed: () {
+  //         _onClickAvancar(context);
+  //       });
+  // }
 
   _onClickAvancar(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
