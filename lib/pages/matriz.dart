@@ -101,20 +101,20 @@ class _ImagensState extends State<Imagens> {
           return WillPopScope(
             onWillPop: () async => false,
             child: AlertDialog(
-              backgroundColor: Colors.red[400],
+              backgroundColor: Colors.white,
               title: Text("Uma pena você errou! Quer tentar de novo?",
                   textAlign: TextAlign.center, style: TextStyle(
-                      fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
+                      fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold)),
               actions: <Widget>[
                 TextButton(
-                  child: Text("Tentar de Novo", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: Text("Tentar de Novo", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                   onPressed: () {
                     _onClickNavigator(context,
                         Figuras(widget.contador -= 3, widget.tamanho -= 1));
                   },
                 ),
                 TextButton(
-                  child: Text("Sair do Jogo", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: Text("Sair do Jogo", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                   onPressed: () {
                     _onClickNavigator(context, Jogos());
                   },
@@ -133,6 +133,7 @@ class _ImagensState extends State<Imagens> {
         if (clicadas.contains(clicked)) {
         } else {
           clicadas.add(clicked);
+
           if (memorized.length == clicadas.length) {
             _imagensCorretas(context);
           }
