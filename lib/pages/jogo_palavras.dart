@@ -125,14 +125,12 @@ class _PalavrasState extends State<Palavras> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _streamController.close();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     addData();
   }
