@@ -4,7 +4,6 @@ import 'package:memory_extreme_app/pages/drawer_list.dart';
 import 'package:memory_extreme_app/pages/jogos.dart';
 import 'package:memory_extreme_app/pages/login.dart';
 
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
