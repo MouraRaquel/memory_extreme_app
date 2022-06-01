@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/home_page.dart';
-import 'package:memory_extreme_app/pages/login.dart';
 
 void main() => runApp(MyApp());
 

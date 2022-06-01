@@ -3,8 +3,6 @@ import 'package:memory_extreme_app/home_page.dart';
 import 'package:memory_extreme_app/pages/instrucoes.dart';
 import 'package:memory_extreme_app/pages/jogo_figuras.dart';
 import 'package:memory_extreme_app/pages/jogo_palavras.dart';
-import 'package:memory_extreme_app/pages/login.dart';
-
 
 class DrawerList extends StatelessWidget {
   @override
@@ -63,7 +61,7 @@ class DrawerList extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
-              title: Text("Logout"),
+              title: Text("Sair do Jogo"),
               trailing: Icon(Icons.arrow_forward),
               onTap: () => onClickLogout(context),
             )
@@ -74,7 +72,7 @@ class DrawerList extends StatelessWidget {
 }
   onClickLogout(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Login();
+      return HomePage();
     }));
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_extreme_app/pages/drawer_list.dart';
 import 'package:memory_extreme_app/pages/jogos.dart';
-import 'package:memory_extreme_app/pages/login.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -38,9 +37,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-            Expanded(flex: 0, child: _buttonAdvance(context, "Jogar")),
-              Expanded(flex: 0, child: _buttonExit(context, "Sair")),
-
+            Expanded(flex: 0, child: _buttonAdvance(context, "Jogar"))
             ],
           ),
           Expanded(flex: 1, child: Text(" ", style: TextStyle(color: Colors.black))),
@@ -57,24 +54,10 @@ class HomePage extends StatelessWidget {
           _onClickAdvance(context);
         });
   }
-  _buttonExit(context, String text) {
-    return TextButton(
-        style: TextButton.styleFrom(backgroundColor: Colors.purple, minimumSize: Size(150, 50)),
-        child: Text(text, style: TextStyle(color: Colors.white, fontSize: 30)),
-        onPressed: () {
-          _onClickExit(context);
-        });
-  }
 
   _onClickAdvance(context) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return Jogos();
-    }));
-  }
-
-  _onClickExit(context) {
-    Navigator.pop(context, MaterialPageRoute(builder: (BuildContext context) {
-      return Login();
     }));
   }
 
